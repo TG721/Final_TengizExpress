@@ -16,7 +16,7 @@ class HomeItemAdapter : ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder
 
         fun bind() {
 
-            val source = getItem(adapterPosition)
+            val source = getItem(absoluteAdapterPosition)
             binding.OvalItem.setImageResource(source.image)
             binding.ovalItemTitle.text = source.title
 
@@ -32,16 +32,14 @@ class HomeItemAdapter : ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder
     override fun onBindViewHolder(holder: HomeItemViewHolder, position: Int) {
         holder.bind()
     }
+    private class ItemDiffCallback : DiffUtil.ItemCallback<HomeItem>() {
+        override fun areItemsTheSame(oldItem: HomeItem, newItem: HomeItem): Boolean =
+            oldItem.title == newItem.title
 
+        override fun areContentsTheSame(oldItem: HomeItem, newItem: HomeItem): Boolean =
+            oldItem == newItem
 
-}
-
-private class ItemDiffCallback : DiffUtil.ItemCallback<HomeItem>() {
-    override fun areItemsTheSame(oldItem: HomeItem, newItem: HomeItem): Boolean =
-        oldItem.title == newItem.title
-
-    override fun areContentsTheSame(oldItem: HomeItem, newItem: HomeItem): Boolean =
-        oldItem == newItem
+    }
 
 }
 

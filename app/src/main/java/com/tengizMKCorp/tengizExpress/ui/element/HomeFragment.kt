@@ -1,20 +1,73 @@
 package com.tengizMKCorp.tengizExpress.ui.element
 
+import android.view.View
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.tengizMKCorp.tengizExpress.R
 import com.tengizMKCorp.tengizExpress.databinding.FragmentHomeBinding
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.HomeItemAdapter
+import com.tengizMKCorp.tengizExpress.ui.element.adapter.NonDetailedProductInfoAdapter
 import com.tengizMKCorp.tengizExpress.ui.element.common.BaseFragment
 import com.tengizMKCorp.tengizExpress.ui.element.model.HomeItemList
+import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
+import com.tengizMKCorp.tengizExpress.ui.element.model.convertBestSalesSortedByNestToNonDetailedProductInfo
+import com.tengizMKCorp.tengizExpress.ui.viewmodel.HomeViewModel
+import com.tengizMKCorp.tengizExpress.utils.ResponseState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+    val viewModel: HomeViewModel by viewModels()
     private lateinit var homeItemAdapter: HomeItemAdapter
+    private lateinit var nonDetailedProductAdapter: NonDetailedProductInfoAdapter
     override fun setup() {
         setupHomeItemRecycler()
+        setupNonDetailedProductRecycler()
         setupImageSlider()
+    }
+
+
+    override fun observers() {
+        viewModel.getInfo()
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.myState.collect {
+                    when (it) {
+                        is ResponseState.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
+                        is ResponseState.Error -> {
+//                            binding.messageText.text = "could not get the items"
+                            binding.messageText.text = it.message
+                            binding.messageText.visibility = View.VISIBLE
+                            binding.progressBar.visibility = View.GONE
+                        }
+                        is ResponseState.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            val uiList = mutableListOf<NonDetailedProductInfo>()
+                            for (i in 0 until it.items.size){
+                                uiList.add(convertBestSalesSortedByNestToNonDetailedProductInfo(it.items.elementAt(i)))
+                            }
+                            nonDetailedProductAdapter.submitList(uiList)
+                            if (nonDetailedProductAdapter.currentList.isEmpty()) {
+                                binding.messageText.text = "not found items"
+                                binding.messageText.visibility = View.VISIBLE
+                                binding.progressBar.visibility = View.VISIBLE
+                            }
+                        }
+                        else -> {}
+                    }
+                }
+            }
+        }
     }
 
     private fun setupImageSlider() {
@@ -34,4 +87,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeItemRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         homeItemAdapter.submitList(HomeItemList)
     }
+    private fun setupNonDetailedProductRecycler() {
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter()
+        val productRecycler = binding.bestSalesSortedByNewRV
+        productRecycler.adapter = nonDetailedProductAdapter
+        productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+
+    }
+
 }
