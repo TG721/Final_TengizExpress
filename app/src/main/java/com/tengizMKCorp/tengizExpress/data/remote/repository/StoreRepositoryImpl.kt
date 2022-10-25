@@ -2,6 +2,7 @@ package com.tengizMKCorp.tengizExpress.data.remote.repository
 
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
+import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
 import com.tengizMKCorp.tengizExpress.utils.ResponseState
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +22,20 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi) : Store
                 emit(ResponseState.Error(response.errorBody()?.string()))
             }
         } catch (e: Exception){
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    override suspend fun getCategories(): Flow<ResponseState<List<CategoryItem>>> = flow {
+        try {
+            val response: Response<List<CategoryItem>> = api.getCategories()
+            val body: List<CategoryItem>? = response.body()
+            if (response.isSuccessful && body != null) {
+                emit(ResponseState.Success(body))
+            } else {
+                emit(ResponseState.Error(response.errorBody()?.string()))
+            }
+        } catch (e: Exception) {
             emit(ResponseState.Error(e.message.toString()))
         }
     }

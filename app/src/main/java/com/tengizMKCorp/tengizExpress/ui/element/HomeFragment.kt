@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeItemAdapter: HomeItemAdapter
     private lateinit var nonDetailedProductAdapter: NonDetailedProductInfoAdapter
     override fun setup() {
@@ -35,7 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
 
     override fun observers() {
-        viewModel.getInfo()
+//        viewModel.getInfo()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -58,7 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             }
                             nonDetailedProductAdapter.submitList(uiList)
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
-                                binding.messageText.text = "not found items"
+                                binding.messageText.text = getString(R.string.not_found_items)
                                 binding.messageText.visibility = View.VISIBLE
                                 binding.progressBar.visibility = View.VISIBLE
                             }
