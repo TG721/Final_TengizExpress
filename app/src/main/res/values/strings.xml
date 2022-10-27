@@ -8,4 +8,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="not_found_items">not found items</string>
+    <string name="laptop">Laptop</string>
+    <string-array name="filters">
+        <item>ascending price</item>
+        <item>decreasing price</item>
+    </string-array>
 </resources>

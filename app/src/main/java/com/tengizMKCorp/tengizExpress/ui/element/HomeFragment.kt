@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -67,6 +68,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     }
                 }
             }
+        }
+    }
+
+    override fun listeners() {
+        binding.button.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToResultByCategoryFragment() //current item
+            binding.rootLayout.findNavController().navigate(action)
         }
     }
 
