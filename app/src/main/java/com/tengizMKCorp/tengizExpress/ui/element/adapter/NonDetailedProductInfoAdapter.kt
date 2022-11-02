@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.R
-import com.tengizMKCorp.tengizExpress.databinding.HomeBestSalesItemBinding
 import com.tengizMKCorp.tengizExpress.databinding.HomeItemBinding
+import com.tengizMKCorp.tengizExpress.databinding.NonDetailedProductItemBinding
 import com.tengizMKCorp.tengizExpress.ui.element.model.HomeItem
 import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
 
 class NonDetailedProductInfoAdapter : ListAdapter<NonDetailedProductInfo, NonDetailedProductInfoAdapter.ProductViewHolder>(ItemDiffCallback()) {
-    inner class ProductViewHolder(private val binding: HomeBestSalesItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ProductViewHolder(private val binding: NonDetailedProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind() {
@@ -35,7 +35,7 @@ class NonDetailedProductInfoAdapter : ListAdapter<NonDetailedProductInfo, NonDet
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = HomeBestSalesItemBinding.inflate(layoutInflater, parent, false)
+        val binding = NonDetailedProductItemBinding.inflate(layoutInflater, parent, false)
         return ProductViewHolder(binding)
     }
 

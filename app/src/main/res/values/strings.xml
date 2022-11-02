@@ -9,7 +9,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="not_found_items">not found items</string>
     <string name="laptop">Laptop</string>
-    <string-array name="filters">
+    <string name="select_filter">select filter</string>
+    <string name="sort_by">sort by</string>
+    <string name="all">All</string>
+    <string-array name="sort">
         <item>ascending price</item>
         <item>decreasing price</item>
     </string-array>

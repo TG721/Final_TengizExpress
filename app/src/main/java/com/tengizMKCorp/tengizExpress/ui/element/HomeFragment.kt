@@ -1,5 +1,6 @@
 package com.tengizMKCorp.tengizExpress.ui.element
 
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -71,13 +72,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    override fun listeners() {
-        binding.button.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToResultByCategoryFragment() //current item
-            binding.rootLayout.findNavController().navigate(action)
-        }
-    }
 
+
+    @SuppressLint("SuspiciousIndentation")
     private fun setupImageSlider() {
         val imageSlider = binding.imageSlider
         val imageArrayList = arrayListOf<SlideModel>(SlideModel(R.drawable.pic_1, null, null),

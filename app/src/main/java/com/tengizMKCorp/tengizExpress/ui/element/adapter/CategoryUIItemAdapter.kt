@@ -3,10 +3,13 @@ package com.tengizMKCorp.tengizExpress.ui.element.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tengizMKCorp.tengizExpress.databinding.CategoryItemBinding
+import com.tengizMKCorp.tengizExpress.ui.element.CategoriesFragmentDirections
+import com.tengizMKCorp.tengizExpress.ui.element.HomeFragmentDirections
 import com.tengizMKCorp.tengizExpress.ui.element.model.CategoryUIItem
 
 
@@ -19,6 +22,10 @@ class CategoryUIItemAdapter : ListAdapter<CategoryUIItem, CategoryUIItemAdapter.
             val source = getItem(absoluteAdapterPosition)
             binding.apply {
                 categoryName.text = source.name
+                cardView.setOnClickListener {
+                    val action = CategoriesFragmentDirections.actionCategoriesFragmentToResultByCategoryFragment(source.id) //current item
+                    binding.rootLayout.findNavController().navigate(action)
+                }
             }
         }
     }
