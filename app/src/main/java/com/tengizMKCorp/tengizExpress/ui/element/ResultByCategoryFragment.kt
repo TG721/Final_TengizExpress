@@ -8,6 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.R
 import com.tengizMKCorp.tengizExpress.databinding.FragmentResultByCategoryBinding
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.NonDetailedProductInfoAdapter
@@ -27,6 +30,8 @@ class ResultByCategoryFragment :
     private val viewModel: ResultByCategoryViewModel by viewModels()
     private lateinit var nonDetailedProductAdapter: NonDetailedProductInfoAdapter
     private val args by navArgs<ResultByCategoryFragmentArgs>()
+    private var productsUIList = mutableListOf<NonDetailedProductInfo>()
+    private lateinit var productRecycler: RecyclerView
     override fun setup() {
         setupDropDownMenu()
         setupRecyclerView()
@@ -50,11 +55,11 @@ class ResultByCategoryFragment :
                         }
                         is ResponseState.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            val uiList = mutableListOf<NonDetailedProductInfo>()
+                            productsUIList = mutableListOf<NonDetailedProductInfo>()
                             for (i in 0 until it.items.docs.size){
-                                uiList.add(convertProductByCategoryIDtoNonDetailedProductInfo(it.items.docs.elementAt(i)))
+                                productsUIList.add(convertProductByCategoryIDtoNonDetailedProductInfo(it.items.docs.elementAt(i)))
                             }
-                            nonDetailedProductAdapter.submitList(uiList)
+                            nonDetailedProductAdapter.submitList(productsUIList)
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
                                 binding.messageText.text = getString(R.string.not_found_items)
                                 binding.messageText.visibility = View.VISIBLE
@@ -67,10 +72,45 @@ class ResultByCategoryFragment :
             }
         }
     }
+    override fun listeners() {
+        binding.autoCompleteTextView.setOnItemClickListener { adapterView, _, i, _ ->
+            when {
+                (adapterView.getItemAtPosition(i)).toString()=="ascending price" -> {
+                    val asc = productsUIList.sortedBy {
+                        it.discountedPrice
+                    }
+                    nonDetailedProductAdapter.submitList(asc)
+                }
+                (adapterView.getItemAtPosition(i)).toString()=="decreasing price" -> {
+                    val dec = productsUIList.sortedByDescending {
+                        it.discountedPrice
+                    }
+                    nonDetailedProductAdapter.submitList(dec)
+                }
+                else -> {}
+            }
+        }
+        binding.viewType.setOnClickListener {
+            viewModel.increaseClickCount()
+            val viewChangeClickCount=viewModel.getClickCount()
+            if(viewChangeClickCount%2==1) {
+                Glide.with(this@ResultByCategoryFragment)
+                    .load(R.drawable.ic_linear_view_icon)
+                    .into(binding.viewType)
+                productRecycler.layoutManager = LinearLayoutManager(requireContext())
+            }
+            else {
+                Glide.with(this@ResultByCategoryFragment)
+                    .load(R.drawable.ic_grid_view_icon)
+                    .into(binding.viewType)
+                productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+            }
+        }
+    }
 
     private fun setupRecyclerView() {
         nonDetailedProductAdapter = NonDetailedProductInfoAdapter()
-        val productRecycler = binding.ItemsRV
+         productRecycler = binding.ItemsRV
         productRecycler.adapter = nonDetailedProductAdapter
         productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
 
