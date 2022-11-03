@@ -34,6 +34,23 @@ class ResultByCategoryFragment :
         setupPageTitle()
         setupDropDownMenu()
         setupRecyclerView()
+        setupGridView()
+    }
+
+    private fun setupGridView() {
+        val viewChangeClickCount=viewModel.getClickCount()
+        if(viewChangeClickCount%2==1) {
+            Glide.with(this@ResultByCategoryFragment)
+                .load(R.drawable.ic_linear_view_icon)
+                .into(binding.viewType)
+            gridLayoutManager.spanCount = 1
+        }
+        else {
+            Glide.with(this@ResultByCategoryFragment)
+                .load(R.drawable.ic_grid_view_icon)
+                .into(binding.viewType)
+            gridLayoutManager.spanCount = 2
+        }
     }
 
     private fun setupPageTitle() {
@@ -95,19 +112,7 @@ class ResultByCategoryFragment :
         }
         binding.viewType.setOnClickListener {
             viewModel.increaseClickCount()
-            val viewChangeClickCount=viewModel.getClickCount()
-            if(viewChangeClickCount%2==1) {
-                Glide.with(this@ResultByCategoryFragment)
-                    .load(R.drawable.ic_linear_view_icon)
-                    .into(binding.viewType)
-                gridLayoutManager.spanCount = 1
-            }
-            else {
-                Glide.with(this@ResultByCategoryFragment)
-                    .load(R.drawable.ic_grid_view_icon)
-                    .into(binding.viewType)
-                gridLayoutManager.spanCount = 2
-            }
+            setupGridView()
         }
     }
 

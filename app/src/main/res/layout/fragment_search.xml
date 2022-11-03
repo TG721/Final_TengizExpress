@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".ui.element.SearchFragment">
+
+    <TextView
+        android:id="@+id/tittleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_background"
+        android:iconTint="@color/red_orange"
+        app:searchIcon="@drawable/ic_search_icon"
+        android:textSize="30sp"
+        app:iconifiedByDefault="false"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="@string/what_are_you_looking_for" />
+    <TextView
+        android:id="@+id/lastViewedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_viewed"
+        android:textColor="@color/black"
+        android:textSize="29sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lastViewedRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/latestSearchTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/latest_search"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="29sp" />
+
+        <TextView
+            android:id="@+id/cleanAllHistoryTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clean_all_history"
+            android:textColor="@color/default_orange"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_gravity="center"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/latestSearchRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
