@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.element.CategoriesFragment">
+    tools:context=".ui.element.CategoriesFragment"
+    android:background="@color/lightest_orange">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -41,7 +42,7 @@
         android:layout_marginTop="50dp"
         android:text=""
         android:visibility="gone"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

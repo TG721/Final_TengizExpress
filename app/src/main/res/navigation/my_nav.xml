@@ -31,5 +31,8 @@
         <argument
             android:name="category_id"
             app:argType="integer" />
+        <argument
+            android:name="category_name"
+            app:argType="string" />
     </fragment>
 </navigation>

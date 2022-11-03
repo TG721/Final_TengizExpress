@@ -23,7 +23,7 @@ class CategoryUIItemAdapter : ListAdapter<CategoryUIItem, CategoryUIItemAdapter.
             binding.apply {
                 categoryName.text = source.name
                 cardView.setOnClickListener {
-                    val action = CategoriesFragmentDirections.actionCategoriesFragmentToResultByCategoryFragment(source.id) //current item
+                    val action = CategoriesFragmentDirections.actionCategoriesFragmentToResultByCategoryFragment(source.id, source.name) //current item
                     binding.rootLayout.findNavController().navigate(action)
                 }
             }

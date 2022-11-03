@@ -31,8 +31,13 @@ class ResultByCategoryFragment :
     private lateinit var productRecycler: RecyclerView
     private lateinit var gridLayoutManager: GridLayoutManager
     override fun setup() {
+        setupPageTitle()
         setupDropDownMenu()
         setupRecyclerView()
+    }
+
+    private fun setupPageTitle() {
+        binding.title.text = args.categoryName
     }
 
     override fun observers() {
