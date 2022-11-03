@@ -29,6 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeItemAdapter: HomeItemAdapter
     private lateinit var nonDetailedProductAdapter: NonDetailedProductInfoAdapter
+    private lateinit var gridLayoutManager: GridLayoutManager
     override fun setup() {
         setupHomeItemRecycler()
         setupNonDetailedProductRecycler()
@@ -93,10 +94,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeItemAdapter.submitList(HomeItemList)
     }
     private fun setupNonDetailedProductRecycler() {
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter()
+        gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager)
         val productRecycler = binding.bestSalesSortedByNewRV
-        productRecycler.adapter = nonDetailedProductAdapter
         productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        productRecycler.adapter = nonDetailedProductAdapter
 
     }
 

@@ -8,16 +8,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.R
 import com.tengizMKCorp.tengizExpress.databinding.FragmentResultByCategoryBinding
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.NonDetailedProductInfoAdapter
 import com.tengizMKCorp.tengizExpress.ui.element.common.BaseFragment
-import com.tengizMKCorp.tengizExpress.ui.element.model.CategoryUIItem
 import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
-import com.tengizMKCorp.tengizExpress.ui.element.model.convertDataCategoryToUI
 import com.tengizMKCorp.tengizExpress.ui.element.model.convertProductByCategoryIDtoNonDetailedProductInfo
 import com.tengizMKCorp.tengizExpress.ui.viewmodel.ResultByCategoryViewModel
 import com.tengizMKCorp.tengizExpress.utils.ResponseState
@@ -32,6 +29,7 @@ class ResultByCategoryFragment :
     private val args by navArgs<ResultByCategoryFragmentArgs>()
     private var productsUIList = mutableListOf<NonDetailedProductInfo>()
     private lateinit var productRecycler: RecyclerView
+    private lateinit var gridLayoutManager: GridLayoutManager
     override fun setup() {
         setupDropDownMenu()
         setupRecyclerView()
@@ -63,7 +61,7 @@ class ResultByCategoryFragment :
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
                                 binding.messageText.text = getString(R.string.not_found_items)
                                 binding.messageText.visibility = View.VISIBLE
-                                binding.progressBar.visibility = View.VISIBLE
+                                binding.progressBar.visibility = View.GONE
                             }
                         }
                         else -> {}
@@ -97,22 +95,24 @@ class ResultByCategoryFragment :
                 Glide.with(this@ResultByCategoryFragment)
                     .load(R.drawable.ic_linear_view_icon)
                     .into(binding.viewType)
-                productRecycler.layoutManager = LinearLayoutManager(requireContext())
+                gridLayoutManager.spanCount = 1
             }
             else {
                 Glide.with(this@ResultByCategoryFragment)
                     .load(R.drawable.ic_grid_view_icon)
                     .into(binding.viewType)
-                productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+                gridLayoutManager.spanCount = 2
             }
         }
     }
 
     private fun setupRecyclerView() {
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter()
-         productRecycler = binding.ItemsRV
+        productRecycler = binding.ItemsRV
+        gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager)
+        productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter
-        productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+
 
     }
 
@@ -120,5 +120,6 @@ class ResultByCategoryFragment :
         val sortingMethods: Array<String> = resources.getStringArray(R.array.sort)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, sortingMethods)
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
+        binding.autoCompleteTextView.showSoftInputOnFocus = false
     }
 }

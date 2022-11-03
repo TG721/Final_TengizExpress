@@ -2,6 +2,7 @@ package com.tengizMKCorp.tengizExpress.ui.element.model
 
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_category.Doc
+import com.tengizMKCorp.tengizExpress.extensions.formatDecimal
 
 class NonDetailedProductInfo (
     val id: String,
@@ -17,6 +18,7 @@ fun convertBestSalesSortedByNestToNonDetailedProductInfo(obj: BestSalesSortedByN
 }
 
 fun convertProductByCategoryIDtoNonDetailedProductInfo(obj: Doc): NonDetailedProductInfo{
-    return NonDetailedProductInfo(obj.product_id,obj.app_sale_price/(obj.discount_rate/100),obj.app_sale_price, obj.discount_rate, obj.product_title, obj.product_main_image_url)
+    val originalPrice = (obj.app_sale_price/(obj.discount_rate.toDouble()/100)).formatDecimal()
+    return NonDetailedProductInfo(obj.product_id,originalPrice,obj.app_sale_price, obj.discount_rate, obj.product_title, obj.product_main_image_url)
 }
 
