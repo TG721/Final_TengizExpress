@@ -1,10 +1,12 @@
 package com.tengizMKCorp.tengizExpress.ui.element
 
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -24,9 +26,10 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeItemAdapter: HomeItemAdapter
     private lateinit var nonDetailedProductAdapter: NonDetailedProductInfoAdapter
+    private lateinit var gridLayoutManager: GridLayoutManager
     override fun setup() {
         setupHomeItemRecycler()
         setupNonDetailedProductRecycler()
@@ -35,7 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
 
     override fun observers() {
-        viewModel.getInfo()
+//        viewModel.getInfo()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -58,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             }
                             nonDetailedProductAdapter.submitList(uiList)
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
-                                binding.messageText.text = "not found items"
+                                binding.messageText.text = getString(R.string.not_found_items)
                                 binding.messageText.visibility = View.VISIBLE
                                 binding.progressBar.visibility = View.VISIBLE
                             }
@@ -70,6 +73,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+
+
+    @SuppressLint("SuspiciousIndentation")
     private fun setupImageSlider() {
         val imageSlider = binding.imageSlider
         val imageArrayList = arrayListOf<SlideModel>(SlideModel(R.drawable.pic_1, null, null),
@@ -88,10 +94,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeItemAdapter.submitList(HomeItemList)
     }
     private fun setupNonDetailedProductRecycler() {
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter()
+        gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager)
         val productRecycler = binding.bestSalesSortedByNewRV
-        productRecycler.adapter = nonDetailedProductAdapter
         productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        productRecycler.adapter = nonDetailedProductAdapter
 
     }
 

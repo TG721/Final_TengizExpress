@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="20dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@color/lightest_orange">
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/cardView"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/percentSaleBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="26.4dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:elevation="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_promotion" />
+
+            <TextView
+                android:id="@+id/percentSaleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:text="-50%"
+                android:textColor="@color/red_orange"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/percentSaleBackground"
+                app:layout_constraintEnd_toEndOf="@+id/percentSaleBackground"
+                app:layout_constraintStart_toStartOf="@+id/percentSaleBackground"
+                app:layout_constraintTop_toTopOf="@+id/percentSaleBackground" />
+
+            <ImageView
+                android:id="@+id/ProductImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/product_placeholder" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Shoe"
+        android:maxWidth="180dp"
+        android:maxLines="4"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productPriceDiscounted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="10.99$"
+        android:textColor="@color/red_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/productPriceOriginal"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <TextView
+        android:id="@+id/productPriceOriginal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="12$"
+        android:textColor="@color/grey_500"
+        app:layout_constraintEnd_toStartOf="@+id/productPriceDiscounted"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <ImageView
+        android:id="@+id/originalPriceDiscountLine"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/productPriceOriginal"
+        app:layout_constraintEnd_toEndOf="@+id/productPriceOriginal"
+        app:layout_constraintStart_toStartOf="@+id/productPriceOriginal"
+        app:layout_constraintTop_toTopOf="@+id/productPriceOriginal"
+        app:srcCompat="@drawable/ic_line" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

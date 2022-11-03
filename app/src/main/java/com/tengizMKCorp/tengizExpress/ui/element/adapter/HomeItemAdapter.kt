@@ -2,10 +2,12 @@ package com.tengizMKCorp.tengizExpress.ui.element.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tengizMKCorp.tengizExpress.databinding.HomeItemBinding
+import com.tengizMKCorp.tengizExpress.ui.element.HomeFragmentDirections
 import com.tengizMKCorp.tengizExpress.ui.element.model.HomeItem
 
 
@@ -19,7 +21,12 @@ class HomeItemAdapter : ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder
             val source = getItem(absoluteAdapterPosition)
             binding.OvalItem.setImageResource(source.image)
             binding.ovalItemTitle.text = source.title
-
+            if(absoluteAdapterPosition==0){
+                binding.OvalItem.setOnClickListener {
+                    val action = HomeFragmentDirections.actionHomeFragmentToCategoriesFragment() //current item
+                    binding.rootLayout.findNavController().navigate(action)
+                }
+            }
         }
     }
 
