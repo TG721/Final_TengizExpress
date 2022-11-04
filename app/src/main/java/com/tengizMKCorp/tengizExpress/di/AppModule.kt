@@ -1,6 +1,9 @@
 package com.tengizMKCorp.tengizExpress.di
 
 import android.content.Context
+import androidx.room.Room
+import com.tengizMKCorp.tengizExpress.data.local.source.ProductDao
+import com.tengizMKCorp.tengizExpress.data.local.source.ProductDatabase
 import com.tengizMKCorp.tengizExpress.data.remote.MyInterceptor
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import dagger.Module
@@ -35,6 +38,21 @@ object AppModule {
     @Singleton
     fun provideMyApi(retrofit: Retrofit): StoreApi {
         return retrofit.create(StoreApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context) : ProductDatabase {
+        return Room.databaseBuilder(
+            context,
+            ProductDatabase::class.java, "product_database"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDao(database: ProductDatabase) : ProductDao {
+        return database.productDao()
     }
 
 }

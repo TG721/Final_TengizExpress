@@ -1,5 +1,7 @@
-package com.tengizMKCorp.tengizExpress.data.remote.repository
+package com.tengizMKCorp.tengizExpress.data.repository
 
+import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
+import com.tengizMKCorp.tengizExpress.data.local.source.ProductDao
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
@@ -11,7 +13,8 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import javax.inject.Inject
 
-class StoreRepositoryImpl @Inject constructor(private val api: StoreApi) : StoreRepository {
+class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private val productDao: ProductDao) : StoreRepository {
+    //retrofit
     override suspend fun getBestSalesProductsSortByNewest(): Flow<ResponseState<List<BestSalesSortedByNewestItem>>> = flow{
         try {
             val response: Response<List<BestSalesSortedByNewestItem>> = api.getBestSalesProductsSortByNewest()
@@ -52,5 +55,18 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi) : Store
         } catch (e: Exception){
             emit(ResponseState.Error(e.message.toString()))
         }
+    }
+
+    //room
+    override suspend fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel) {
+        productDao.deleteFromLastViewedTable(product)
+    }
+
+    override suspend fun readAllDataFromLastViewedTable(): Flow<List<NonDetailedProductDataBaseModel>> {
+       return productDao.readAllDataFromLastViewedTable()
+    }
+
+    override suspend fun addProductToLastViewedTable(product: NonDetailedProductDataBaseModel){
+        productDao.addProductToLastViewedTable(product)
     }
 }

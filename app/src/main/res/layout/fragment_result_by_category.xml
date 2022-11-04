@@ -26,7 +26,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_weight="5">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextView"
@@ -42,8 +42,8 @@
 
         <ImageView
             android:id="@+id/viewType"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:src="@drawable/ic_grid_view_icon" />
 

@@ -1,6 +1,6 @@
 package com.tengizMKCorp.tengizExpress.di
 
-import com.tengizMKCorp.tengizExpress.data.remote.repository.StoreRepositoryImpl
+import com.tengizMKCorp.tengizExpress.data.repository.StoreRepositoryImpl
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
 import dagger.Binds
 import dagger.Module
