@@ -16,7 +16,7 @@ import com.tengizMKCorp.tengizExpress.databinding.NonDetailedProductItemListBind
 import com.tengizMKCorp.tengizExpress.ui.element.model.HomeItem
 import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
 
-class NonDetailedProductInfoAdapter(private val gridLayoutManager: GridLayoutManager) : ListAdapter<NonDetailedProductInfo, RecyclerView.ViewHolder>(ItemDiffCallback()) {
+class NonDetailedProductInfoAdapter(private val gridLayoutManager: GridLayoutManager, val onClick: (productID: String) -> Unit ) : ListAdapter<NonDetailedProductInfo, RecyclerView.ViewHolder>(ItemDiffCallback()) {
     companion object Const{
         const val VIEW_TYPE_1 = 1
         const val VIEW_TYPE_2 = 2
@@ -35,6 +35,9 @@ class NonDetailedProductInfoAdapter(private val gridLayoutManager: GridLayoutMan
                     .load(source.productPicture)
                     .into(ProductImage)
             }
+            val pos = absoluteAdapterPosition
+            if (pos != RecyclerView.NO_POSITION)
+                onClick(source.id)
         }
     }
     inner class ProductListViewHolder(private val binding: NonDetailedProductItemListBinding) : RecyclerView.ViewHolder(binding.root) {

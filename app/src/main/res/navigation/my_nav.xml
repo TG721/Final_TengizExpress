@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_detailedProductFragment_to_productImagesFragment"
             app:destination="@id/productImagesFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"

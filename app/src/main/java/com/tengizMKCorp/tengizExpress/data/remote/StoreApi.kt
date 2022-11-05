@@ -3,6 +3,7 @@ package com.tengizMKCorp.tengizExpress.data.remote
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_category.ProductsByCategoryID
+import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_id.ProductByID
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,5 +15,7 @@ interface StoreApi {
     suspend fun getCategories(): Response<List<CategoryItem>>
     @GET("category/{categoryID}/products")
     suspend fun getProductsByCategories(@Path("categoryID") id: Int):Response<ProductsByCategoryID>
+    @GET("product/{productID}")
+    suspend fun getProductByID(@Path("productID") id: Long): Response<ProductByID>
 
 }

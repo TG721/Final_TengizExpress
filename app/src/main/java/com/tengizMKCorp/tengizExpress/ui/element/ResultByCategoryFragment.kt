@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -119,7 +120,11 @@ class ResultByCategoryFragment :
     private fun setupRecyclerView() {
         productRecycler = binding.ItemsRV
         gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager)
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager){
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(it)
+            binding.rootLayout.findNavController().navigate(action)
+        }
         productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter
 
