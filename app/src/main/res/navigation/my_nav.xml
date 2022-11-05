@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoriesFragment"
             app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailedProductFragment"
+            app:destination="@id/detailedProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -34,10 +37,39 @@
         <argument
             android:name="category_name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_resultByCategoryFragment_to_detailedProductFragment"
+            app:destination="@id/detailedProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.tengizMKCorp.tengizExpress.ui.element.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailedProductFragment"
+            app:destination="@id/detailedProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedProductFragment"
+        android:name="com.tengizMKCorp.tengizExpress.ui.element.DetailedProductFragment"
+        android:label="fragment_detailed_product"
+        tools:layout="@layout/fragment_detailed_product" >
+        <action
+            android:id="@+id/action_detailedProductFragment_to_productImagesFragment"
+            app:destination="@id/productImagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.tengizMKCorp.tengizExpress.ui.element.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" />
+    <fragment
+        android:id="@+id/productImagesFragment"
+        android:name="com.tengizMKCorp.tengizExpress.ui.element.ProductImagesFragment"
+        android:label="fragment_product_images"
+        tools:layout="@layout/fragment_product_images" />
 </navigation>

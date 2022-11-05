@@ -8,7 +8,6 @@ data class ProductsByCategoryID(
     val nextPage: Int,
     val page: Int,
     val prvPage: Any,
-    val searchEngine: SearchEngine,
     val totalPages: Int,
     val total_record_count: Int
 )

@@ -17,6 +17,7 @@
     <string name="latest_search">Latest Search</string>
     <string name="clean_all_history">Clean all history</string>
     <string name="smart_speaker">Smart speaker</string>
+    <string name="add_to_cart">Add to cart</string>
     <string-array name="sort">
         <item>ascending price</item>
         <item>decreasing price</item>
