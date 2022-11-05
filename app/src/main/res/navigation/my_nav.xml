@@ -58,21 +58,13 @@
         android:name="com.tengizMKCorp.tengizExpress.ui.element.DetailedProductFragment"
         android:label="fragment_detailed_product"
         tools:layout="@layout/fragment_detailed_product" >
-        <action
-            android:id="@+id/action_detailedProductFragment_to_productImagesFragment"
-            app:destination="@id/productImagesFragment" />
         <argument
-            android:name="id"
-            app:argType="string" />
+            android:name="product"
+            app:argType="com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="com.tengizMKCorp.tengizExpress.ui.element.SearchResultFragment"
         android:label="fragment_search_result"
         tools:layout="@layout/fragment_search_result" />
-    <fragment
-        android:id="@+id/productImagesFragment"
-        android:name="com.tengizMKCorp.tengizExpress.ui.element.ProductImagesFragment"
-        android:label="fragment_product_images"
-        tools:layout="@layout/fragment_product_images" />
 </navigation>
