@@ -29,15 +29,20 @@ class NonDetailedProductInfoAdapter(private val gridLayoutManager: GridLayoutMan
             binding.apply {
                 productName.text = source.productName
                 productPriceOriginal.text = source.originalPrice.toString()
-                productPriceDiscounted.text =  source.discountedPrice.toString()
-                percentSaleText.text = "-"+source.discountPercentage.toString()+"%"
+                productPriceDiscounted.text = source.discountedPrice.toString()
+                percentSaleText.text = "-" + source.discountPercentage.toString() + "%"
                 Glide.with(ProductImage)
                     .load(source.productPicture)
                     .into(ProductImage)
+
+                cardView.setOnClickListener {
+                    val pos = absoluteAdapterPosition
+                    if (pos != RecyclerView.NO_POSITION) {
+                        val id = source.id
+                        onClick(id)
+                    }
+                }
             }
-            val pos = absoluteAdapterPosition
-            if (pos != RecyclerView.NO_POSITION)
-                onClick(source.id)
         }
     }
     inner class ProductListViewHolder(private val binding: NonDetailedProductItemListBinding) : RecyclerView.ViewHolder(binding.root) {

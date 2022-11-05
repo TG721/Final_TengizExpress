@@ -14,7 +14,7 @@ class NonDetailedProductInfo (
     )
 
 fun convertBestSalesSortedByNestToNonDetailedProductInfo(obj: BestSalesSortedByNewestItem): NonDetailedProductInfo{
-    return NonDetailedProductInfo(obj._id,obj.original_price,obj.sale_price, obj.discount_rate,obj.product_title, obj.product_main_image_url)
+    return NonDetailedProductInfo(obj.product_id.toString(),obj.original_price,obj.sale_price, obj.discount_rate,obj.product_title, obj.product_main_image_url)
 }
 
 fun convertProductByCategoryIDtoNonDetailedProductInfo(obj: Doc): NonDetailedProductInfo{

@@ -122,7 +122,7 @@ class ResultByCategoryFragment :
         gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
         nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager){
             val action =
-                HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(it)
+                ResultByCategoryFragmentDirections.actionResultByCategoryFragmentToDetailedProductFragment(it)
             binding.rootLayout.findNavController().navigate(action)
         }
         productRecycler.layoutManager = gridLayoutManager
