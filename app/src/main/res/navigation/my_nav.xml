@@ -61,6 +61,11 @@
         <argument
             android:name="product"
             app:argType="com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo" />
+        <action
+            android:id="@+id/action_detailedProductFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"

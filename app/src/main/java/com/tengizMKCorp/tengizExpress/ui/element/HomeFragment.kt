@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.tengizMKCorp.tengizExpress.R
+import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.databinding.FragmentHomeBinding
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.HomeItemAdapter
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.NonDetailedProductInfoAdapter
@@ -39,6 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun observers() {
         viewModel.getInfo()
+        viewModel.readAllDataFromLastViewedTableUseCase()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -56,8 +58,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         is ResponseState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             val uiList = mutableListOf<NonDetailedProductInfo>()
-                            for (i in 0 until it.items.size){
-                                uiList.add(convertBestSalesSortedByNestToNonDetailedProductInfo(it.items.elementAt(i)))
+                            for (i in 0 until it.items.size) {
+                                uiList.add(convertBestSalesSortedByNestToNonDetailedProductInfo(it.items.elementAt(
+                                    i)))
                             }
                             nonDetailedProductAdapter.submitList(uiList)
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
@@ -73,35 +76,56 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-
-
     @SuppressLint("SuspiciousIndentation")
     private fun setupImageSlider() {
         val imageSlider = binding.imageSlider
-        val imageArrayList = arrayListOf<SlideModel>(SlideModel(R.drawable.pic_1, null, null),
+        val imageArrayList = arrayListOf<SlideModel>(
+            SlideModel(R.drawable.pic_1, null, null),
             SlideModel(R.drawable.pic_2, null, null),
             SlideModel(R.drawable.pic_3, null, null),
             SlideModel(R.drawable.pic_4, null, null),
         )
-            imageSlider.setImageList(imageArrayList, ScaleTypes.CENTER_CROP)
+        imageSlider.setImageList(imageArrayList, ScaleTypes.CENTER_CROP)
     }
 
     private fun setupHomeItemRecycler() {
         homeItemAdapter = HomeItemAdapter()
         val homeItemRecycler = binding.homeItemRV
         homeItemRecycler.adapter = homeItemAdapter
-        homeItemRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        homeItemRecycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         homeItemAdapter.submitList(HomeItemList)
     }
+
     private fun setupNonDetailedProductRecycler() {
-        gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager) {
+        gridLayoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        var lastViewedItemsSize: Int? = null
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager) {itOfRecyclerAdapter ->
+            viewModel.readAllDataFromLastViewedTableUseCase()
+            lifecycleScope.launch {
+                    viewModel.products.collect { it ->
+                        lastViewedItemsSize=it.size
+                        if (lastViewedItemsSize==2){
+                            viewModel.deleteProductFromLastViewedTable(it.elementAt(1))
+                        }
+                            viewModel.addProductToLastViewedTable(NonDetailedProductDataBaseModel(itOfRecyclerAdapter.id,
+                                itOfRecyclerAdapter.originalPrice,
+                                itOfRecyclerAdapter.discountedPrice,
+                                itOfRecyclerAdapter.discountPercentage,
+                                itOfRecyclerAdapter.productName,
+                                itOfRecyclerAdapter.productPicture))
+                    }
+
+            }
             val action =
-                HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(it)
+                HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(itOfRecyclerAdapter)
             binding.rootLayout.findNavController().navigate(action)
+
         }
         val productRecycler = binding.bestSalesSortedByNewRV
-        productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        productRecycler.layoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         productRecycler.adapter = nonDetailedProductAdapter
 
     }

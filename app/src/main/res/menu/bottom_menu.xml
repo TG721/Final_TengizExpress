@@ -8,16 +8,6 @@
         android:icon="@drawable/ic_home_icon"
        />
     <item
-        android:id="@+id/searchFragment"
-        android:title="@string/search"
-        android:icon="@drawable/ic_search_icon"
-        />
-    <item
-        android:id="@+id/cart"
-        android:title="@string/cart"
-        android:icon="@drawable/ic_cart_icon"
-        />
-    <item
         android:id="@+id/account"
         android:title="@string/account"
         android:icon="@drawable/ic_account_icon"

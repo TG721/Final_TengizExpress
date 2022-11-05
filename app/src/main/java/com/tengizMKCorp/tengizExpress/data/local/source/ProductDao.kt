@@ -11,6 +11,6 @@ interface ProductDao {
     @Delete
     suspend fun deleteFromLastViewedTable(product: NonDetailedProductDataBaseModel)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addProductToLastViewedTable(product: NonDetailedProductDataBaseModel)
 }

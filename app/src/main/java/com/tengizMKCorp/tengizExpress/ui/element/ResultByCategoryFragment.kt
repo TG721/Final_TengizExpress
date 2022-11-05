@@ -45,6 +45,7 @@ class ResultByCategoryFragment :
                 .load(R.drawable.ic_linear_view_icon)
                 .into(binding.viewType)
             gridLayoutManager.spanCount = 1
+
         }
         else {
             Glide.with(this@ResultByCategoryFragment)

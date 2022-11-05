@@ -7,11 +7,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.replace
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.tengizMKCorp.tengizExpress.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.fragment.findNavController
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigation = binding.bottomNavigationView
         bottomNavigation.setupWithNavController(navController)
+
     }
 
 }

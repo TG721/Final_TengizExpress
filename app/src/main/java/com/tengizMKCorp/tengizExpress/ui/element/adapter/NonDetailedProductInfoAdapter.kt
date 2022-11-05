@@ -39,7 +39,6 @@ class NonDetailedProductInfoAdapter(
                 cardView.setOnClickListener {
                     val pos = absoluteAdapterPosition
                     if (pos != RecyclerView.NO_POSITION) {
-                        val id = source.id
                         onClick(source)
                     }
                 }
@@ -61,6 +60,12 @@ class NonDetailedProductInfoAdapter(
                 Glide.with(ProductImage)
                     .load(source.productPicture)
                     .into(ProductImage)
+                cardView.setOnClickListener {
+                    val pos = absoluteAdapterPosition
+                    if (pos != RecyclerView.NO_POSITION) {
+                        onClick(source)
+                    }
+                }
             }
         }
     }
