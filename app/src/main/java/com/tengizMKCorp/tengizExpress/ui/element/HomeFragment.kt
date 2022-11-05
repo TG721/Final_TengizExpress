@@ -38,7 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
 
     override fun observers() {
-//        viewModel.getInfo()
+        viewModel.getInfo()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -95,7 +95,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
     private fun setupNonDetailedProductRecycler() {
         gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager)
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager) {
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(it)
+            binding.rootLayout.findNavController().navigate(action)
+        }
         val productRecycler = binding.bestSalesSortedByNewRV
         productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
         productRecycler.adapter = nonDetailedProductAdapter

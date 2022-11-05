@@ -6,5 +6,6 @@ data class Doc(
     val product_detail_url: String,
     val product_id: String,
     val product_main_image_url: String,
-    val product_title: String
+    val product_title: String,
+
 )
