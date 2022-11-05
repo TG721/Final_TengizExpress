@@ -31,23 +31,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     override fun setup() {
     viewModel.readAllDataFromLastViewedTable()
         val gridLayoutManager = GridLayoutManager(requireContext(),1, GridLayoutManager.VERTICAL,false)
-        lastViewItemAdapter = NonDetailedProductInfoAdapter(gridLayoutManager){
-            val action =
-                SearchFragmentDirections.actionSearchFragmentToDetailedProductFragment(it)
-            binding.rootLayout.findNavController().navigate(action)
-        }
+        lastViewItemAdapter = NonDetailedProductInfoAdapter(gridLayoutManager,"Search")
         val recyclerView = binding.lastViewedRV
         recyclerView.adapter = lastViewItemAdapter
         recyclerView.layoutManager = gridLayoutManager
-        popStack()
 
-    }
 
-    private fun popStack() {
-//        findNavController().popBackStack(R.id.homeFragment, false)
-        findNavController().popBackStack(R.id.categoriesFragment, false)
-//        findNavController().popBackStack(R.id.resultByCategoryFragment, false)
-//        findNavController().popBackStack(R.id.detailedProductFragment, false)
     }
 
     override fun observers() {
@@ -63,6 +52,29 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
             }
         }
+    }
+
+    override fun listeners() {
+        binding.searchView?.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSearchFragment() //current item
+                binding.rootLayout.findNavController().navigate(action)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText!="") {
+                    val action =
+                        SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(newText!!) //current item
+                    binding.rootLayout.findNavController().navigate(action)
+                    return false;
+                }
+                return true
+            }
+
+        })
     }
 
 

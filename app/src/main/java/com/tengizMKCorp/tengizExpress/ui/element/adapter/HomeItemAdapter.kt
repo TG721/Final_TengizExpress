@@ -11,9 +11,11 @@ import com.tengizMKCorp.tengizExpress.ui.element.HomeFragmentDirections
 import com.tengizMKCorp.tengizExpress.ui.element.model.HomeItem
 
 
-class HomeItemAdapter : ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder>(ItemDiffCallback()) {
+class HomeItemAdapter() :
+    ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder>(ItemDiffCallback()) {
 
-    inner class HomeItemViewHolder(private val binding: HomeItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class HomeItemViewHolder(private val binding: HomeItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind() {
@@ -21,11 +23,20 @@ class HomeItemAdapter : ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder
             val source = getItem(absoluteAdapterPosition)
             binding.OvalItem.setImageResource(source.image)
             binding.ovalItemTitle.text = source.title
-            if(absoluteAdapterPosition==0){
-                binding.OvalItem.setOnClickListener {
-                    val action = HomeFragmentDirections.actionHomeFragmentToCategoriesFragment() //current item
+            binding.OvalItem.setOnClickListener {
+            when (absoluteAdapterPosition) {
+                0 -> {
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToCategoriesFragment() //current item
                     binding.rootLayout.findNavController().navigate(action)
                 }
+
+                1 -> {
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSearchFragment() //current item
+                    binding.rootLayout.findNavController().navigate(action)
+                }
+            }
             }
         }
     }
@@ -39,6 +50,7 @@ class HomeItemAdapter : ListAdapter<HomeItem, HomeItemAdapter.HomeItemViewHolder
     override fun onBindViewHolder(holder: HomeItemViewHolder, position: Int) {
         holder.bind()
     }
+
     private class ItemDiffCallback : DiffUtil.ItemCallback<HomeItem>() {
         override fun areItemsTheSame(oldItem: HomeItem, newItem: HomeItem): Boolean =
             oldItem.title == newItem.title

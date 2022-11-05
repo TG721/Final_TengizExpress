@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -39,8 +40,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
 
     override fun observers() {
-        viewModel.getInfo()
-        viewModel.readAllDataFromLastViewedTableUseCase()
+//        viewModel.getInfo()
+//        viewModel.readAllDataFromLastViewedTableUseCase()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -101,28 +102,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         gridLayoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         var lastViewedItemsSize: Int? = null
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager) {itOfRecyclerAdapter ->
-            viewModel.readAllDataFromLastViewedTableUseCase()
-            lifecycleScope.launch {
-                    viewModel.products.collect { it ->
-                        lastViewedItemsSize=it.size
-                        if (lastViewedItemsSize==2){
-                            viewModel.deleteProductFromLastViewedTable(it.elementAt(1))
-                        }
-                            viewModel.addProductToLastViewedTable(NonDetailedProductDataBaseModel(itOfRecyclerAdapter.id,
-                                itOfRecyclerAdapter.originalPrice,
-                                itOfRecyclerAdapter.discountedPrice,
-                                itOfRecyclerAdapter.discountPercentage,
-                                itOfRecyclerAdapter.productName,
-                                itOfRecyclerAdapter.productPicture))
-                    }
-
-            }
-            val action =
-                HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(itOfRecyclerAdapter)
-            binding.rootLayout.findNavController().navigate(action)
-
-        }
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager, "Home")
         val productRecycler = binding.bestSalesSortedByNewRV
         productRecycler.layoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)

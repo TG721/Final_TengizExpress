@@ -3,6 +3,7 @@ package com.tengizMKCorp.tengizExpress.ui.element.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -10,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.databinding.NonDetailedProductItemGridBinding
 import com.tengizMKCorp.tengizExpress.databinding.NonDetailedProductItemListBinding
+import com.tengizMKCorp.tengizExpress.ui.element.*
 import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
 
 class NonDetailedProductInfoAdapter(
-    private val gridLayoutManager: GridLayoutManager,
-    val onClick: (product: NonDetailedProductInfo) -> Unit,
+    private val gridLayoutManager: GridLayoutManager,val fragmentName: String
 ) : ListAdapter<NonDetailedProductInfo, RecyclerView.ViewHolder>(ItemDiffCallback()) {
     companion object Const {
         const val VIEW_TYPE_1 = 1
@@ -39,7 +40,23 @@ class NonDetailedProductInfoAdapter(
                 cardView.setOnClickListener {
                     val pos = absoluteAdapterPosition
                     if (pos != RecyclerView.NO_POSITION) {
-                        onClick(source)
+                        when(fragmentName) {
+                            "Home" -> {
+                                val action =
+                                    HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(
+                                        source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                            "ResultsByCategory" -> {
+                                val action = ResultByCategoryFragmentDirections.actionResultByCategoryFragmentToDetailedProductFragment(
+                                    source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                            "Search" -> {
+                                val action = SearchFragmentDirections.actionSearchFragmentToDetailedProductFragment(source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                        }
                     }
                 }
             }
@@ -63,7 +80,9 @@ class NonDetailedProductInfoAdapter(
                 cardView.setOnClickListener {
                     val pos = absoluteAdapterPosition
                     if (pos != RecyclerView.NO_POSITION) {
-                        onClick(source)
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(source)
+                        binding.rootLayout.findNavController().navigate(action)
                     }
                 }
             }

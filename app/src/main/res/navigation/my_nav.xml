@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailedProductFragment"
             app:destination="@id/detailedProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -71,5 +74,9 @@
         android:id="@+id/searchResultFragment"
         android:name="com.tengizMKCorp.tengizExpress.ui.element.SearchResultFragment"
         android:label="fragment_search_result"
-        tools:layout="@layout/fragment_search_result" />
+        tools:layout="@layout/fragment_search_result" >
+        <argument
+            android:name="inputName"
+            app:argType="string" />
+    </fragment>
 </navigation>

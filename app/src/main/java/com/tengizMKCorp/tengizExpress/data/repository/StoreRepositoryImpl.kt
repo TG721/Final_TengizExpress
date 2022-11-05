@@ -5,6 +5,7 @@ import com.tengizMKCorp.tengizExpress.data.local.source.ProductDao
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
+import com.tengizMKCorp.tengizExpress.data.remote.model.productByName.ProductByName
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_category.ProductsByCategoryID
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
 import com.tengizMKCorp.tengizExpress.utils.ResponseState
@@ -56,6 +57,21 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
             emit(ResponseState.Error(e.message.toString()))
         }
     }
+
+    override suspend fun getProductsByName(productName: String): Flow<ResponseState<List<ProductByName>>> = flow {
+            try {
+                val response: Response<List<ProductByName>> = api.getProductsByName(name = productName)
+                val body: List<ProductByName>? = response.body()
+                if (response.isSuccessful && body != null) {
+                    emit(ResponseState.Success(body))
+                } else {
+                    emit(ResponseState.Error(response.errorBody()?.string()))
+                }
+            } catch (e: Exception){
+                emit(ResponseState.Error(e.message.toString()))
+            }
+        }
+
 
     //room
     override suspend fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel) {

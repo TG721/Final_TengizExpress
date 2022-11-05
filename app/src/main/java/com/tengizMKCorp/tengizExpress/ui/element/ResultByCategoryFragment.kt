@@ -121,11 +121,7 @@ class ResultByCategoryFragment :
     private fun setupRecyclerView() {
         productRecycler = binding.ItemsRV
         gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager){
-            val action =
-                ResultByCategoryFragmentDirections.actionResultByCategoryFragmentToDetailedProductFragment(it)
-            binding.rootLayout.findNavController().navigate(action)
-        }
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager,"ResultsByCategory")
         productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter
 
