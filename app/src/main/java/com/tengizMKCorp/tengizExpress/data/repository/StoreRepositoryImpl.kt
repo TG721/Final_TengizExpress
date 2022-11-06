@@ -109,7 +109,7 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
     }
 
     override suspend fun deleteProductFromCart(product: CartModel) {
-        deleteProductFromCart(product)
+        productDao.deleteProductFromCart(product)
     }
 
     override suspend fun readAllDataFromCartTable(): Flow<List<CartModel>> {
