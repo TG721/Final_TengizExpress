@@ -27,14 +27,5 @@ interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addToNameTable(name: NameModel)
-    //cart
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addProductToCart(product: CartModel)
-
-    @Delete
-    suspend fun deleteProductFromCart(product: CartModel)
-
-    @Query("SELECT * FROM cart_table")
-    fun readAllDataFromCartTable(): Flow<List<CartModel>>
 
 }

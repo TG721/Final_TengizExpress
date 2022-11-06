@@ -1,9 +1,6 @@
 package com.tengizMKCorp.tengizExpress.data.repository
 
-import com.tengizMKCorp.tengizExpress.data.local.source.product.CartModel
-import com.tengizMKCorp.tengizExpress.data.local.source.product.NameModel
-import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
-import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDao
+import com.tengizMKCorp.tengizExpress.data.local.source.product.*
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
@@ -16,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import javax.inject.Inject
 
-class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private val productDao: ProductDao) : StoreRepository {
+class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private val productDao: ProductDao, private val cartDao: CartDao) : StoreRepository {
     //retrofit
     override suspend fun getBestSalesProductsSortByNewest(): Flow<ResponseState<List<BestSalesSortedByNewestItem>>> = flow{
         try {
@@ -105,14 +102,14 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
     }
 
     override suspend fun addProductToCart(product: CartModel) {
-        productDao.addProductToCart(product)
+        cartDao.addProductToCart(product)
     }
 
     override suspend fun deleteProductFromCart(product: CartModel) {
-        productDao.deleteProductFromCart(product)
+        cartDao.deleteProductFromCart(product)
     }
 
     override suspend fun readAllDataFromCartTable(): Flow<List<CartModel>> {
-        return productDao.readAllDataFromCartTable()
+        return cartDao.readAllDataFromCartTable()
     }
 }

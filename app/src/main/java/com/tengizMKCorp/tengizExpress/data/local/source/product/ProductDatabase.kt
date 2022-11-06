@@ -7,5 +7,5 @@ import androidx.room.RoomDatabase
 abstract class ProductDatabase: RoomDatabase() {
 
     abstract fun productDao(): ProductDao
-
+    abstract fun cartDao(): CartDao
 }

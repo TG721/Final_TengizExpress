@@ -2,6 +2,7 @@ package com.tengizMKCorp.tengizExpress.di
 
 import android.content.Context
 import androidx.room.Room
+import com.tengizMKCorp.tengizExpress.data.local.source.product.CartDao
 import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDao
 import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDatabase
 import com.tengizMKCorp.tengizExpress.data.remote.MyInterceptor
@@ -53,6 +54,12 @@ object AppModule {
     @Singleton
     fun provideProductDao(database: ProductDatabase) : ProductDao {
         return database.productDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartDao(database: ProductDatabase) : CartDao {
+        return database.cartDao()
     }
 
 //    @Provides

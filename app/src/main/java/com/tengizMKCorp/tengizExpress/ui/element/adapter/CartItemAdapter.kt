@@ -3,15 +3,12 @@ package com.tengizMKCorp.tengizExpress.ui.element.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.data.local.source.product.CartModel
 import com.tengizMKCorp.tengizExpress.databinding.CartItemBinding
-import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
-import com.tengizMKCorp.tengizExpress.ui.viewmodel.HomeViewModel
 
 
 class CartItemAdapter() :
@@ -29,6 +26,8 @@ class CartItemAdapter() :
                 Glide.with(ProductImage)
                     .load(source.productPicture)
                     .into(ProductImage)
+                productID.text = source.id
+                productURI.text = source.productPicture
                 cardView.setOnClickListener {
                     val pos = absoluteAdapterPosition
                 }
