@@ -50,7 +50,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         lastWordsAdapter = SearchedNameAdapter( {
             viewModel.deleteFromNameTable(it)
         }){
-            binding.searchView.setQuery(it.name,false)
+            binding.searchView.setQuery(it.name,true)
         }
         val recyclerView = binding.latestSearchRV
         recyclerView.adapter = lastWordsAdapter
