@@ -1,5 +1,6 @@
 package com.tengizMKCorp.tengizExpress.ui.element
 
+import android.util.Log
 import android.util.Log.d
 import android.view.View
 import androidx.fragment.app.viewModels

@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface StoreApi {
     @GET("bestSales/SortedByNewest?limit=20")
@@ -17,6 +18,6 @@ interface StoreApi {
     @GET("category/{categoryID}/products")
     suspend fun getProductsByCategories(@Path("categoryID") id: Int):Response<ProductsByCategoryID>
     @GET("products/search")
-    suspend fun getProductsByName(@Header("name") name:String) : Response<ProductByName>
+    suspend fun getProductsByName(@Query("name") name:String) : Response<ProductByName>
 
 }
