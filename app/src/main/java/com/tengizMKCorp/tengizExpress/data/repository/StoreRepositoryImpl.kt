@@ -1,5 +1,6 @@
 package com.tengizMKCorp.tengizExpress.data.repository
 
+import com.tengizMKCorp.tengizExpress.data.local.source.product.CartModel
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NameModel
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDao
@@ -101,5 +102,17 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
 
     override suspend fun deleteFromNameTable(name: NameModel) {
         productDao.deleteFromNameTable(name)
+    }
+
+    override suspend fun addProductToCart(product: CartModel) {
+        productDao.addProductToCart(product)
+    }
+
+    override suspend fun deleteProductFromCart(product: CartModel) {
+        deleteProductFromCart(product)
+    }
+
+    override suspend fun readAllDataFromCartTable(): Flow<List<CartModel>> {
+        return productDao.readAllDataFromCartTable()
     }
 }

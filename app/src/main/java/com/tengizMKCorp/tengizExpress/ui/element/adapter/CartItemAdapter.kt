@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.tengizMKCorp.tengizExpress.data.local.source.product.CartModel
 import com.tengizMKCorp.tengizExpress.databinding.CartItemBinding
 import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
 import com.tengizMKCorp.tengizExpress.ui.viewmodel.HomeViewModel
 
 
 class CartItemAdapter() :
-    ListAdapter<NonDetailedProductInfo, CartItemAdapter.CartItemViewHolder>(ItemDiffCallback()) {
+    ListAdapter<CartModel, CartItemAdapter.CartItemViewHolder>(ItemDiffCallback()) {
 
     inner class CartItemViewHolder(private val binding: CartItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -24,9 +25,7 @@ class CartItemAdapter() :
             val source = getItem(absoluteAdapterPosition)
             binding.apply {
                 productName.text = source.productName
-                productPriceOriginal.text = source.originalPrice.toString()
                 productPriceDiscounted.text = source.discountedPrice.toString()
-                percentSaleText.text = "-" + source.discountPercentage.toString() + "%"
                 Glide.with(ProductImage)
                     .load(source.productPicture)
                     .into(ProductImage)
@@ -49,17 +48,17 @@ class CartItemAdapter() :
     }
 
 
-    private class ItemDiffCallback : DiffUtil.ItemCallback<NonDetailedProductInfo>() {
+    private class ItemDiffCallback : DiffUtil.ItemCallback<CartModel>() {
         override fun areItemsTheSame(
-            oldItem: NonDetailedProductInfo,
-            newItem: NonDetailedProductInfo,
+            oldItem: CartModel,
+            newItem: CartModel,
         ): Boolean =
             oldItem.id == newItem.id
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(
-            oldItem: NonDetailedProductInfo,
-            newItem: NonDetailedProductInfo,
+            oldItem: CartModel,
+            newItem: CartModel,
         ): Boolean =
             oldItem == newItem
 
