@@ -1,7 +1,8 @@
 package com.tengizMKCorp.tengizExpress.data.repository
 
-import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
-import com.tengizMKCorp.tengizExpress.data.local.source.ProductDao
+import com.tengizMKCorp.tengizExpress.data.local.source.product.NameModel
+import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
+import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDao
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
@@ -84,5 +85,21 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
 
     override suspend fun addProductToLastViewedTable(product: NonDetailedProductDataBaseModel){
         productDao.addProductToLastViewedTable(product)
+    }
+
+    override suspend fun addToNameTable(name: NameModel) {
+        productDao.addToNameTable(name)
+    }
+
+    override suspend fun readAllDataFromNameTable(): Flow<List<NameModel>> {
+      return productDao.readAllDataFromNameTable()
+    }
+
+    override suspend fun deleteAllFromNameTable() {
+        productDao.deleteAllFromNameTable()
+    }
+
+    override suspend fun deleteFromNameTable(name: NameModel) {
+        productDao.deleteFromNameTable(name)
     }
 }

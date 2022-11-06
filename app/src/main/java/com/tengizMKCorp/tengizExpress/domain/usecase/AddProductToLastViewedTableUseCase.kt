@@ -1,6 +1,6 @@
 package com.tengizMKCorp.tengizExpress.domain.usecase
 
-import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
+import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
 import javax.inject.Inject
 

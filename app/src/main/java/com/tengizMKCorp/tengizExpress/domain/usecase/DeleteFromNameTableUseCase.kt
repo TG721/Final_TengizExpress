@@ -1,13 +1,14 @@
 package com.tengizMKCorp.tengizExpress.domain.usecase
 
+import com.tengizMKCorp.tengizExpress.data.local.source.product.NameModel
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
 import javax.inject.Inject
 
-class DeleteProductFromLastViewedTableUseCase @Inject constructor(
+class DeleteFromNameTableUseCase @Inject constructor(
     private val storeRep: StoreRepository
 ) {
-    suspend fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel){
-        storeRep.deleteProductFromLastViewedTable(product)
+    suspend fun deleteFromNameTable(name: NameModel){
+        storeRep.deleteFromNameTable(name)
     }
 }

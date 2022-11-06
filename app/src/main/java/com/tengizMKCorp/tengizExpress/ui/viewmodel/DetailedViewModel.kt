@@ -2,7 +2,7 @@ package com.tengizMKCorp.tengizExpress.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
+import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.domain.usecase.AddProductToLastViewedTableUseCase
 import com.tengizMKCorp.tengizExpress.domain.usecase.DeleteProductFromLastViewedTableUseCase
 import com.tengizMKCorp.tengizExpress.domain.usecase.GetBestSalesSortByNewestUseCase

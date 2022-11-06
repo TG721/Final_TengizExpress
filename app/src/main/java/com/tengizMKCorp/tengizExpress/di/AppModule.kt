@@ -2,8 +2,8 @@ package com.tengizMKCorp.tengizExpress.di
 
 import android.content.Context
 import androidx.room.Room
-import com.tengizMKCorp.tengizExpress.data.local.source.ProductDao
-import com.tengizMKCorp.tengizExpress.data.local.source.ProductDatabase
+import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDao
+import com.tengizMKCorp.tengizExpress.data.local.source.product.ProductDatabase
 import com.tengizMKCorp.tengizExpress.data.remote.MyInterceptor
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import dagger.Module
@@ -42,7 +42,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context) : ProductDatabase {
+    fun provideProductDatabase(@ApplicationContext context: Context) : ProductDatabase {
         return Room.databaseBuilder(
             context,
             ProductDatabase::class.java, "product_database"
@@ -51,8 +51,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserDao(database: ProductDatabase) : ProductDao {
+    fun provideProductDao(database: ProductDatabase) : ProductDao {
         return database.productDao()
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideNameDatabase(@ApplicationContext context: Context) : NameDatabase {
+//        return Room.databaseBuilder(
+//            context,
+//            NameDatabase::class.java, "product_database"
+//        ).build()
+//    }
+//
+//    @Provides
+//    @Singleton
+//    fun provideNameDao(database: NameDatabase) : NameDao {
+//        return database.nameDao()
+//    }
 
 }

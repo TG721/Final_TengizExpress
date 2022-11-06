@@ -63,6 +63,7 @@ class SearchResultFragment :
                         }
                         is ResponseState.Success -> {
                             binding.progressBar.visibility = View.GONE
+                            binding.resultTitle.visibility = View.VISIBLE
                             val uiList = mutableListOf<NonDetailedProductInfo>()
                             for (i in 0 until it.items.docs.size) {
                                 uiList.add(convertProductByName(it.items.docs.elementAt(i)))
@@ -71,7 +72,7 @@ class SearchResultFragment :
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
                                 binding.messageText.text = getString(R.string.not_found_items)
                                 binding.messageText.visibility = View.VISIBLE
-                                binding.progressBar.visibility = View.VISIBLE
+
                             }
                         }
                         else -> {}

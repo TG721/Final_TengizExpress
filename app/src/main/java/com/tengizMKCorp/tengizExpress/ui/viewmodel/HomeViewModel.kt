@@ -2,16 +2,14 @@ package com.tengizMKCorp.tengizExpress.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
+import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.domain.usecase.AddProductToLastViewedTableUseCase
 import com.tengizMKCorp.tengizExpress.domain.usecase.DeleteProductFromLastViewedTableUseCase
 import com.tengizMKCorp.tengizExpress.domain.usecase.GetBestSalesSortByNewestUseCase
 import com.tengizMKCorp.tengizExpress.domain.usecase.ReadAllDataFromLastViewedTableUseCase
-import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
 import com.tengizMKCorp.tengizExpress.utils.ResponseState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package com.tengizMKCorp.tengizExpress.data.local.source
+package com.tengizMKCorp.tengizExpress.data.local.source.product
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

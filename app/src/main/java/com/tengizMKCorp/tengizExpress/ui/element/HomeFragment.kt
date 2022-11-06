@@ -6,14 +6,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.tengizMKCorp.tengizExpress.R
-import com.tengizMKCorp.tengizExpress.data.local.source.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.databinding.FragmentHomeBinding
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.HomeItemAdapter
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.NonDetailedProductInfoAdapter
