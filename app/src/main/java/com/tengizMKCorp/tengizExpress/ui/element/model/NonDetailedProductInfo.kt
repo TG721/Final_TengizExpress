@@ -27,6 +27,6 @@ fun convertProductByCategoryIDtoNonDetailedProductInfo(obj: Doc): NonDetailedPro
 }
 
 fun convertProductByName(obj: ProductNameDoc): NonDetailedProductInfo{
-    val originalPrice = (obj.app_sale_price/(obj.discount_rate.toDouble()/100)).formatDecimal()
+    val originalPrice = (obj.app_sale_price/((100-obj.discount_rate.toDouble())/100)).formatDecimal()
     return NonDetailedProductInfo(obj.product_id, originalPrice,obj.app_sale_price, obj.discount_rate, obj.product_title, obj.product_main_image_url)
 }
