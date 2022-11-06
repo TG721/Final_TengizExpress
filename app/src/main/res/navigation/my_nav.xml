@@ -82,4 +82,9 @@
             android:id="@+id/action_searchResultFragment_to_detailedProductFragment"
             app:destination="@id/detailedProductFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.tengizMKCorp.tengizExpress.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

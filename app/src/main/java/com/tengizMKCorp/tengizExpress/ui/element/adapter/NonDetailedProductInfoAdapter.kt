@@ -84,9 +84,27 @@ class NonDetailedProductInfoAdapter(
                 cardView.setOnClickListener {
                     val pos = absoluteAdapterPosition
                     if (pos != RecyclerView.NO_POSITION) {
-                        val action =
-                            HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(source)
-                        binding.rootLayout.findNavController().navigate(action)
+                        when(fragmentName) {
+                            "Home" -> {
+                                val action =
+                                    HomeFragmentDirections.actionHomeFragmentToDetailedProductFragment(
+                                        source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                            "ResultsByCategory" -> {
+                                val action = ResultByCategoryFragmentDirections.actionResultByCategoryFragmentToDetailedProductFragment(
+                                    source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                            "Search" -> {
+                                val action = SearchFragmentDirections.actionSearchFragmentToDetailedProductFragment(source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                            "SearchResults" -> {
+                                val action = SearchResultFragmentDirections.actionSearchResultFragmentToDetailedProductFragment(source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
+                        }
                     }
                 }
             }
