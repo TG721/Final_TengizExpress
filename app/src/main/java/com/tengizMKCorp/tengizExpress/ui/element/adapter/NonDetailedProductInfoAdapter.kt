@@ -56,6 +56,10 @@ class NonDetailedProductInfoAdapter(
                                 val action = SearchFragmentDirections.actionSearchFragmentToDetailedProductFragment(source)
                                 binding.rootLayout.findNavController().navigate(action)
                             }
+                            "SearchResults" -> {
+                                val action = SearchResultFragmentDirections.actionSearchResultFragmentToDetailedProductFragment(source)
+                                binding.rootLayout.findNavController().navigate(action)
+                            }
                         }
                     }
                 }

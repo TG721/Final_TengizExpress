@@ -104,8 +104,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         var lastViewedItemsSize: Int? = null
         nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager, "Home")
         val productRecycler = binding.bestSalesSortedByNewRV
-        productRecycler.layoutManager =
-            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter
 
     }

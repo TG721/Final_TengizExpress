@@ -1,6 +1,6 @@
-package com.tengizMKCorp.tengizExpress.data.remote.model.productByName
+package com.tengizMKCorp.tengizExpress.data.remote.model.product_by_name
 
-data class Doc(
+data class ProductNameDoc(
     val app_sale_price: Double,
     val app_sale_price_currency: String,
     val discount_rate: Int,

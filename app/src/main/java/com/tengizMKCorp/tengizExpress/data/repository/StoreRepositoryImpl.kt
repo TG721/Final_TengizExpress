@@ -5,8 +5,8 @@ import com.tengizMKCorp.tengizExpress.data.local.source.ProductDao
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
-import com.tengizMKCorp.tengizExpress.data.remote.model.productByName.ProductByName
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_category.ProductsByCategoryID
+import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_name.ProductByName
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
 import com.tengizMKCorp.tengizExpress.utils.ResponseState
 import kotlinx.coroutines.flow.Flow
@@ -58,10 +58,10 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
         }
     }
 
-    override suspend fun getProductsByName(productName: String): Flow<ResponseState<List<ProductByName>>> = flow {
+    override suspend fun getProductsByName(productName: String): Flow<ResponseState<ProductByName>> = flow {
             try {
-                val response: Response<List<ProductByName>> = api.getProductsByName(name = productName)
-                val body: List<ProductByName>? = response.body()
+                val response: Response<ProductByName> = api.getProductsByName(name = productName)
+                val body: ProductByName? = response.body()
                 if (response.isSuccessful && body != null) {
                     emit(ResponseState.Success(body))
                 } else {

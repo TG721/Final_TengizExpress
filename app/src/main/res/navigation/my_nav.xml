@@ -78,5 +78,8 @@
         <argument
             android:name="inputName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_detailedProductFragment"
+            app:destination="@id/detailedProductFragment" />
     </fragment>
 </navigation>

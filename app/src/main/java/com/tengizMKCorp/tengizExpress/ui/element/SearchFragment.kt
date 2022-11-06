@@ -58,19 +58,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.searchView?.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSearchFragment() //current item
-                binding.rootLayout.findNavController().navigate(action)
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if(newText!="") {
+                if(query!="") {
                     val action =
-                        SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(newText!!) //current item
+                        SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(query!!) //current item
                     binding.rootLayout.findNavController().navigate(action)
                     return false;
                 }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
                 return true
             }
 
