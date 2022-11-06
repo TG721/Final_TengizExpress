@@ -2,7 +2,7 @@
     <string name="app_name">TengizExpress</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
-    <string name="cart">cart</string>
+    <string name="cart">Cart</string>
     <string name="account">Account</string>
     <string name="categories">Categories</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -12,6 +12,12 @@
     <string name="select_filter">select filter</string>
     <string name="sort_by">sort by</string>
     <string name="all">All</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="last_viewed">Last Viewed</string>
+    <string name="latest_search">Latest Search</string>
+    <string name="clean_all_history">Clean all history</string>
+    <string name="smart_speaker">Smart speaker</string>
+    <string name="add_to_cart">Add to cart</string>
     <string-array name="sort">
         <item>ascending price</item>
         <item>decreasing price</item>

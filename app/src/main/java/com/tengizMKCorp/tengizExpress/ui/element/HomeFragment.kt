@@ -6,7 +6,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -39,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun observers() {
 //        viewModel.getInfo()
+//        viewModel.readAllDataFromLastViewedTableUseCase()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -56,8 +56,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         is ResponseState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             val uiList = mutableListOf<NonDetailedProductInfo>()
-                            for (i in 0 until it.items.size){
-                                uiList.add(convertBestSalesSortedByNestToNonDetailedProductInfo(it.items.elementAt(i)))
+                            for (i in 0 until it.items.size) {
+                                uiList.add(convertBestSalesSortedByNestToNonDetailedProductInfo(it.items.elementAt(
+                                    i)))
                             }
                             nonDetailedProductAdapter.submitList(uiList)
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
@@ -73,31 +74,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-
-
     @SuppressLint("SuspiciousIndentation")
     private fun setupImageSlider() {
         val imageSlider = binding.imageSlider
-        val imageArrayList = arrayListOf<SlideModel>(SlideModel(R.drawable.pic_1, null, null),
+        val imageArrayList = arrayListOf<SlideModel>(
+            SlideModel(R.drawable.pic_1, null, null),
             SlideModel(R.drawable.pic_2, null, null),
             SlideModel(R.drawable.pic_3, null, null),
             SlideModel(R.drawable.pic_4, null, null),
         )
-            imageSlider.setImageList(imageArrayList, ScaleTypes.CENTER_CROP)
+        imageSlider.setImageList(imageArrayList, ScaleTypes.CENTER_CROP)
     }
 
     private fun setupHomeItemRecycler() {
         homeItemAdapter = HomeItemAdapter()
         val homeItemRecycler = binding.homeItemRV
         homeItemRecycler.adapter = homeItemAdapter
-        homeItemRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        homeItemRecycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         homeItemAdapter.submitList(HomeItemList)
     }
+
     private fun setupNonDetailedProductRecycler() {
-        gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager)
+        gridLayoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        var lastViewedItemsSize: Int? = null
+        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager, "Home")
         val productRecycler = binding.bestSalesSortedByNewRV
-        productRecycler.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
+        productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter
 
     }
