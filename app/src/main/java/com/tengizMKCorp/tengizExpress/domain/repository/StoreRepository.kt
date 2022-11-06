@@ -1,5 +1,6 @@
 package com.tengizMKCorp.tengizExpress.domain.repository
 
+import com.tengizMKCorp.tengizExpress.data.local.source.product.CartModel
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NameModel
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
@@ -24,6 +25,9 @@ interface StoreRepository {
     suspend fun readAllDataFromNameTable(): Flow<List<NameModel>>
     suspend fun deleteAllFromNameTable()
     suspend fun deleteFromNameTable(name: NameModel)
+    suspend fun addProductToCart(product: CartModel)
+    suspend fun deleteProductFromCart(product: CartModel)
+    suspend fun readAllDataFromCartTable(): Flow<List<CartModel>>
 
 
 }

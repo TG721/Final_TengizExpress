@@ -17,6 +17,7 @@ interface ProductDao {
     @Query("SELECT * FROM name_table")
     fun readAllDataFromNameTable(): Flow<List<NameModel>>
 
+
     @Delete
     suspend fun deleteFromNameTable(name: NameModel)
 
@@ -26,4 +27,5 @@ interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addToNameTable(name: NameModel)
+
 }
