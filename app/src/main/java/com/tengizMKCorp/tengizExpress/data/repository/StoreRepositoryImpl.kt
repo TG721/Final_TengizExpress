@@ -43,7 +43,7 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
         }
     }
 
-    override suspend fun getProductsByCategories(categoryID: Int): Flow<ResponseState<ProductsByCategoryID>> = flow {
+    override suspend fun getProductsByCategories(categoryID: Long): Flow<ResponseState<ProductsByCategoryID>> = flow {
         try {
             val response: Response<ProductsByCategoryID> = api.getProductsByCategories(id = categoryID)
             val body: ProductsByCategoryID? = response.body()

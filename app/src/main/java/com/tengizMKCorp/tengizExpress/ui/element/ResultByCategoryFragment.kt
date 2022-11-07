@@ -39,15 +39,14 @@ class ResultByCategoryFragment :
     }
 
     private fun setupGridView() {
-        val viewChangeClickCount=viewModel.getClickCount()
-        if(viewChangeClickCount%2==1) {
+        val viewChangeClickCount = viewModel.getClickCount()
+        if (viewChangeClickCount % 2 == 1) {
             Glide.with(this@ResultByCategoryFragment)
                 .load(R.drawable.ic_linear_view_icon)
                 .into(binding.viewType)
             gridLayoutManager.spanCount = 1
 
-        }
-        else {
+        } else {
             Glide.with(this@ResultByCategoryFragment)
                 .load(R.drawable.ic_grid_view_icon)
                 .into(binding.viewType)
@@ -78,8 +77,10 @@ class ResultByCategoryFragment :
                         is ResponseState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             productsUIList = mutableListOf<NonDetailedProductInfo>()
-                            for (i in 0 until it.items.docs.size){
-                                productsUIList.add(convertProductByCategoryIDtoNonDetailedProductInfo(it.items.docs.elementAt(i)))
+                            for (i in 0 until it.items.docs.size) {
+                                productsUIList.add(
+                                    convertProductByCategoryIDtoNonDetailedProductInfo(it.items.docs.elementAt(
+                                        i)))
                             }
                             nonDetailedProductAdapter.submitList(productsUIList)
                             if (nonDetailedProductAdapter.currentList.isEmpty()) {
@@ -94,16 +95,17 @@ class ResultByCategoryFragment :
             }
         }
     }
+
     override fun listeners() {
         binding.autoCompleteTextView.setOnItemClickListener { adapterView, _, i, _ ->
             when {
-                (adapterView.getItemAtPosition(i)).toString()=="ascending price" -> {
+                (adapterView.getItemAtPosition(i)).toString() == "ascending price" -> {
                     val asc = productsUIList.sortedBy {
                         it.discountedPrice
                     }
                     nonDetailedProductAdapter.submitList(asc)
                 }
-                (adapterView.getItemAtPosition(i)).toString()=="decreasing price" -> {
+                (adapterView.getItemAtPosition(i)).toString() == "decreasing price" -> {
                     val dec = productsUIList.sortedByDescending {
                         it.discountedPrice
                     }
@@ -116,12 +118,18 @@ class ResultByCategoryFragment :
             viewModel.increaseClickCount()
             setupGridView()
         }
+        binding.floatingActionButton.setOnClickListener {
+            val action = ResultByCategoryFragmentDirections.actionResultByCategoryFragmentToHomeFragment()
+            binding.rootLayout.findNavController().navigate(action)
+        }
     }
 
     private fun setupRecyclerView() {
         productRecycler = binding.ItemsRV
-        gridLayoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL,false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager,"ResultsByCategory")
+        gridLayoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        nonDetailedProductAdapter =
+            NonDetailedProductInfoAdapter(gridLayoutManager, "ResultsByCategory")
         productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter
 

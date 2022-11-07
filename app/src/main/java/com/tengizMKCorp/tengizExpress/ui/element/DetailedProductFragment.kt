@@ -3,6 +3,7 @@ package com.tengizMKCorp.tengizExpress.ui.element
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
@@ -40,13 +41,13 @@ class DetailedProductFragment :
                 }
             }
         }
-            viewModel.addProductToLastViewedTable((NonDetailedProductDataBaseModel(args.product.id,
-                args.product.originalPrice,
-                args.product.discountedPrice,
-                args.product.discountPercentage,
-                args.product.productName,
-                args.product.productPicture))
-            )
+        viewModel.addProductToLastViewedTable((NonDetailedProductDataBaseModel(args.product.id,
+            args.product.originalPrice,
+            args.product.discountedPrice,
+            args.product.discountPercentage,
+            args.product.productName,
+            args.product.productPicture))
+        )
 
     }
 
@@ -54,6 +55,11 @@ class DetailedProductFragment :
         binding.buttonAddToChart.setOnClickListener {
             viewModel.addProductToCart(convertNonDetailedProductInfoToCartModel(args.product))
             Toast.makeText(requireContext(), "Added to cart", Toast.LENGTH_LONG).show()
+        }
+        binding.floatingActionButton.setOnClickListener {
+            val action =
+                DetailedProductFragmentDirections.actionDetailedProductFragmentToHomeFragment()
+            binding.rootLayout.findNavController().navigate(action)
         }
     }
 }

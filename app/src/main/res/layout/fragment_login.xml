@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
+    tools:context=".ui.element.LoginFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDecoration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_login" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="Welcome back"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivDecoration"
+        app:layout_constraintTop_toTopOf="@id/ivDecoration" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Your email"
+        app:boxBackgroundColor="#1A000000"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:helperTextTextColor="@color/regular_red"
+        app:layout_constraintTop_toBottomOf="@id/ivDecoration">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="password"
+        app:boxBackgroundColor="#1A000000"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:helperTextTextColor="@color/regular_red"
+        app:layout_constraintTop_toBottomOf="@id/tilEmail"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/grey">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text="@string/sign_in"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ibtnNext"
+        app:layout_constraintEnd_toStartOf="@id/ibtnNext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ibtnNext" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibtnNext"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/next_btn_custom_bg"
+        android:padding="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_arrow_forward_next"
+        android:tint="@color/white"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="@id/tilPassword"
+        app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="15dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="@color/orange"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvSignUp"
+        app:layout_constraintEnd_toEndOf="@id/tvSignUp"
+        app:layout_constraintStart_toStartOf="@id/tvSignUp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:drawableBottom="@color/red_orange"
+        android:text="@string/sign_up"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/custom_progress_bar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

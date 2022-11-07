@@ -17,4 +17,12 @@
     <color name="red_200">#fc6d62</color>
     <color name="red_500">#eb1000</color>
     <color name="red_700">#a11106</color>
+    <color name="orange">#ffae48</color>
+    <color name="blue">#58bfe6</color>
+    <color name="dark_blue">#000F43</color>
+    <color name="grey">#4c525c</color>
+    <color name="grey_violet">#4D425E</color>
+    <color name="violet_regular">#700BEF</color>
+    <color name="regular_red">#fa1100 </color>
+    <color name="lime">#05eb2f</color>
 </resources>

@@ -24,19 +24,28 @@ class HomeItemAdapter() :
             binding.OvalItem.setImageResource(source.image)
             binding.ovalItemTitle.text = source.title
             binding.OvalItem.setOnClickListener {
-            when (absoluteAdapterPosition) {
-                0 -> {
-                    val action =
-                        HomeFragmentDirections.actionHomeFragmentToCategoriesFragment() //current item
-                    binding.rootLayout.findNavController().navigate(action)
-                }
+                when (absoluteAdapterPosition) {
+                    0 -> {
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToCategoriesFragment() //current item
+                        binding.rootLayout.findNavController().navigate(action)
+                    }
 
-                1 -> {
-                    val action =
-                        HomeFragmentDirections.actionHomeFragmentToSearchFragment() //current item
-                    binding.rootLayout.findNavController().navigate(action)
+                    1 -> {
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToSearchFragment() //current item
+                        binding.rootLayout.findNavController().navigate(action)
+                    }
+                    3 -> {
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToAccountFragment() //current item
+                        binding.rootLayout.findNavController().navigate(action)
+                    }
+                    2 -> {
+                       val action = HomeFragmentDirections.actionHomeFragmentToCartFragment() //current item
+                        binding.rootLayout.findNavController().navigate(action)
+                    }
                 }
-            }
             }
         }
     }

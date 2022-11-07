@@ -14,7 +14,7 @@ interface StoreRepository {
     //retrofit
     suspend fun getBestSalesProductsSortByNewest(): Flow<ResponseState<List<BestSalesSortedByNewestItem>>>
     suspend fun getCategories(): Flow<ResponseState<List<CategoryItem>>>
-    suspend fun getProductsByCategories(categoryID: Int): Flow<ResponseState<ProductsByCategoryID>>
+    suspend fun getProductsByCategories(categoryID: Long): Flow<ResponseState<ProductsByCategoryID>>
     suspend fun getProductsByName(name: String): Flow<ResponseState<ProductByName>>
 
     //room
