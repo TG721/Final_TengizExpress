@@ -106,6 +106,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.cleanAllHistoryTV.setOnClickListener {
             viewModel.deleteAllFromNameTable()
         }
+        binding.floatingActionButton.setOnClickListener {
+            val action = SearchFragmentDirections.actionSearchFragmentToHomeFragment()
+            binding.rootLayout.findNavController().navigate(action)
+        }
     }
 
 

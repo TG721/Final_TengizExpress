@@ -11,8 +11,6 @@ import com.tengizMKCorp.tengizExpress.databinding.FragmentCategoriesBinding
 import com.tengizMKCorp.tengizExpress.ui.element.adapter.CategoryUIItemAdapter
 import com.tengizMKCorp.tengizExpress.ui.element.common.BaseFragment
 import com.tengizMKCorp.tengizExpress.ui.element.model.CategoryUIItem
-import com.tengizMKCorp.tengizExpress.ui.element.model.NonDetailedProductInfo
-import com.tengizMKCorp.tengizExpress.ui.element.model.convertBestSalesSortedByNestToNonDetailedProductInfo
 import com.tengizMKCorp.tengizExpress.ui.element.model.convertDataCategoryToUI
 import com.tengizMKCorp.tengizExpress.ui.viewmodel.CategoriesViewModel
 import com.tengizMKCorp.tengizExpress.utils.ResponseState
@@ -34,6 +32,7 @@ class CategoriesFragment :
         recycler.adapter = categoriesAdapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
     }
+
     override fun observers() {
         viewModel.getInfo()
 
@@ -53,7 +52,7 @@ class CategoriesFragment :
                         is ResponseState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             val uiList = mutableListOf<CategoryUIItem>()
-                            for (i in 0 until it.items.size){
+                            for (i in 0 until it.items.size) {
                                 uiList.add(convertDataCategoryToUI(it.items.elementAt(i)))
                             }
                             categoriesAdapter.submitList(uiList)

@@ -17,36 +17,41 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel  @Inject constructor(private val getBestSalesSortByNewestUseCase : GetBestSalesSortByNewestUseCase,
-                                         private val addProductToLastViewedTableUseCase: AddProductToLastViewedTableUseCase,
-                                         private val readAllDataFromLastViewedTableUseCase: ReadAllDataFromLastViewedTableUseCase,
-                                         private val deleteProductFromLastViewedTableUseCase: DeleteProductFromLastViewedTableUseCase
-): ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val getBestSalesSortByNewestUseCase: GetBestSalesSortByNewestUseCase,
+    private val addProductToLastViewedTableUseCase: AddProductToLastViewedTableUseCase,
+    private val readAllDataFromLastViewedTableUseCase: ReadAllDataFromLastViewedTableUseCase,
+    private val deleteProductFromLastViewedTableUseCase: DeleteProductFromLastViewedTableUseCase,
+) : ViewModel() {
     private val _myState =
         MutableStateFlow<ResponseState<List<BestSalesSortedByNewestItem>>>(ResponseState.Empty()) //mutable state flow
-    val myState: StateFlow<ResponseState<List<BestSalesSortedByNewestItem>>> = _myState //immutable state flow
+    val myState: StateFlow<ResponseState<List<BestSalesSortedByNewestItem>>> =
+        _myState //immutable state flow
 
     fun getInfo() {
         viewModelScope.launch {
             _myState.emit(ResponseState.Loading())
             val data = getBestSalesSortByNewestUseCase.getBestSalesSortByNewestUseCase()
-            data.collect{
+            data.collect {
                 _myState.value = it
             }
         }
     }
-    fun addProductToLastViewedTable(product: NonDetailedProductDataBaseModel){
+
+    fun addProductToLastViewedTable(product: NonDetailedProductDataBaseModel) {
         viewModelScope.launch {
             addProductToLastViewedTableUseCase.addProductToLastViewedTable(product)
         }
     }
-    fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel){
+
+    fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel) {
         viewModelScope.launch {
             deleteProductFromLastViewedTableUseCase.deleteProductFromLastViewedTable(product)
         }
     }
+
     lateinit var products: Flow<List<NonDetailedProductDataBaseModel>>
-    fun readAllDataFromLastViewedTableUseCase(){
+    fun readAllDataFromLastViewedTableUseCase() {
         viewModelScope.launch {
             products = readAllDataFromLastViewedTableUseCase.readAllDataFromLastViewedTable()
         }

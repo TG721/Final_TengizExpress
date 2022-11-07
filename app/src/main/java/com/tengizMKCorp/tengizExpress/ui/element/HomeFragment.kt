@@ -37,8 +37,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
 
     override fun observers() {
-//        viewModel.getInfo()
-//        viewModel.readAllDataFromLastViewedTableUseCase()
+        viewModel.getInfo()
+        viewModel.readAllDataFromLastViewedTableUseCase()
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {

@@ -1,7 +1,5 @@
 package com.tengizMKCorp.tengizExpress.ui.element
 
-import android.util.Log
-import android.util.Log.d
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -34,7 +32,8 @@ class SearchResultFragment :
     private fun setupRecycler() {
         val gridLayoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        nonDetailedProductAdapter = NonDetailedProductInfoAdapter(gridLayoutManager, "SearchResults")
+        nonDetailedProductAdapter =
+            NonDetailedProductInfoAdapter(gridLayoutManager, "SearchResults")
         val productRecycler = binding.SearchResultRV
         productRecycler.layoutManager = gridLayoutManager
         productRecycler.adapter = nonDetailedProductAdapter

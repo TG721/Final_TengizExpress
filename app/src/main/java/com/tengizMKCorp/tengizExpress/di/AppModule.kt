@@ -28,7 +28,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(@ApplicationContext context: Context): Retrofit {
-        return  Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl("https://magic-aliexpress1.p.rapidapi.com/api/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
@@ -43,7 +43,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductDatabase(@ApplicationContext context: Context) : ProductDatabase {
+    fun provideProductDatabase(@ApplicationContext context: Context): ProductDatabase {
         return Room.databaseBuilder(
             context,
             ProductDatabase::class.java, "product_database"
@@ -52,13 +52,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductDao(database: ProductDatabase) : ProductDao {
+    fun provideProductDao(database: ProductDatabase): ProductDao {
         return database.productDao()
     }
 
     @Provides
     @Singleton
-    fun provideCartDao(database: ProductDatabase) : CartDao {
+    fun provideCartDao(database: ProductDatabase): CartDao {
         return database.cartDao()
     }
 

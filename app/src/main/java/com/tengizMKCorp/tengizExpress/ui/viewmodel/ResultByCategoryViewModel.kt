@@ -28,11 +28,13 @@ class ResultByCategoryViewModel @Inject constructor(private val getProductsByCat
         }
 
     }
+
     private var viewChangeClickCount = 0
-    fun getClickCount(): Int{
+    fun getClickCount(): Int {
         return viewChangeClickCount
     }
-    fun increaseClickCount(){
+
+    fun increaseClickCount() {
         viewChangeClickCount++
     }
 }

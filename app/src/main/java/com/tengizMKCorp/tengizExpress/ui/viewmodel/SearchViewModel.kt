@@ -11,11 +11,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val readAllDataFromLastViewedTableUseCase: ReadAllDataFromLastViewedTableUseCase,
-                                          private val deleteAllFromNameTableUseCase: DeleteAllFromNameTableUseCase,
-                                          private val deleteFromNameTableUseCase: DeleteFromNameTableUseCase,
-                                          private val addToNameTableUseCase: AddToNameTableUseCase,
-                                          private val readAllDataFromNameTableUseCase: ReadAllDataFromNameTableUseCase) :
+class SearchViewModel @Inject constructor(
+    private val readAllDataFromLastViewedTableUseCase: ReadAllDataFromLastViewedTableUseCase,
+    private val deleteAllFromNameTableUseCase: DeleteAllFromNameTableUseCase,
+    private val deleteFromNameTableUseCase: DeleteFromNameTableUseCase,
+    private val addToNameTableUseCase: AddToNameTableUseCase,
+    private val readAllDataFromNameTableUseCase: ReadAllDataFromNameTableUseCase,
+) :
     ViewModel() {
     lateinit var products: Flow<List<NonDetailedProductDataBaseModel>>
     fun readAllDataFromLastViewedTable() {
@@ -36,12 +38,14 @@ class SearchViewModel @Inject constructor(private val readAllDataFromLastViewedT
             deleteFromNameTableUseCase.deleteFromNameTable(name)
         }
     }
-    fun deleteAllFromNameTable(){
+
+    fun deleteAllFromNameTable() {
         viewModelScope.launch {
             deleteAllFromNameTableUseCase.deleteAllFromNameTableUseCase()
         }
     }
-    fun addToNameTable(name: NameModel){
+
+    fun addToNameTable(name: NameModel) {
         viewModelScope.launch {
             addToNameTableUseCase.addToNameTable(name)
         }

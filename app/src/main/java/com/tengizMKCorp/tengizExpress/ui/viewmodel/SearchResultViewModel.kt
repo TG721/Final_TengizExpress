@@ -18,13 +18,13 @@ class SearchResultViewModel @Inject constructor(private val getProductsByNameUse
         MutableStateFlow<ResponseState<ProductByName>>(ResponseState.Empty()) //mutable state flow
     val myState: StateFlow<ResponseState<ProductByName>> = _myState //immutable state flow
 
-     fun getProductsByName(productName: String) {
-         viewModelScope.launch {
-             _myState.emit(ResponseState.Loading())
-             val data = getProductsByNameUseCase.getProductsByName(productName)
-             data.collect {
-                 _myState.value = it
-             }
-         }
-     }
+    fun getProductsByName(productName: String) {
+        viewModelScope.launch {
+            _myState.emit(ResponseState.Loading())
+            val data = getProductsByNameUseCase.getProductsByName(productName)
+            data.collect {
+                _myState.value = it
+            }
+        }
+    }
 }

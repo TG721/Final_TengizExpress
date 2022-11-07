@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tengizMKCorp.tengizExpress.databinding.CategoryItemBinding
 import com.tengizMKCorp.tengizExpress.ui.element.CategoriesFragmentDirections
-import com.tengizMKCorp.tengizExpress.ui.element.HomeFragmentDirections
 import com.tengizMKCorp.tengizExpress.ui.element.model.CategoryUIItem
 
 
-class CategoryUIItemAdapter : ListAdapter<CategoryUIItem, CategoryUIItemAdapter.CategoryViewHolder>(ItemDiffCallback()) {
-    inner class CategoryViewHolder(private val binding: CategoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class CategoryUIItemAdapter :
+    ListAdapter<CategoryUIItem, CategoryUIItemAdapter.CategoryViewHolder>(ItemDiffCallback()) {
+    inner class CategoryViewHolder(private val binding: CategoryItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind() {
@@ -23,7 +24,10 @@ class CategoryUIItemAdapter : ListAdapter<CategoryUIItem, CategoryUIItemAdapter.
             binding.apply {
                 categoryName.text = source.name
                 cardView.setOnClickListener {
-                    val action = CategoriesFragmentDirections.actionCategoriesFragmentToResultByCategoryFragment(source.id, source.name) //current item
+                    val action =
+                        CategoriesFragmentDirections.actionCategoriesFragmentToResultByCategoryFragment(
+                            source.id,
+                            source.name) //current item
                     binding.rootLayout.findNavController().navigate(action)
                 }
             }
@@ -39,6 +43,7 @@ class CategoryUIItemAdapter : ListAdapter<CategoryUIItem, CategoryUIItemAdapter.
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.bind()
     }
+
     private class ItemDiffCallback : DiffUtil.ItemCallback<CategoryUIItem>() {
         override fun areItemsTheSame(oldItem: CategoryUIItem, newItem: CategoryUIItem): Boolean =
             oldItem.id == newItem.id

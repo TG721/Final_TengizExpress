@@ -7,7 +7,7 @@ class MyInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
             .newBuilder()
-            .addHeader("X-RapidAPI-Key", "94b211b405msh323602ced6f1662p1e8b5ejsn669c28338831")
+            .addHeader("X-RapidAPI-Key", "d3d5bca2b6mshf80f0cd7118810ap13f826jsn3ce5643bbfd1")
             .build()
         return chain.proceed(request)
     }

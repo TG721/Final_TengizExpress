@@ -19,6 +19,11 @@
     <string name="smart_speaker">Smart speaker</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="your_cart">Your cart</string>
+    <string name="sign_in">Sign in</string>
+    <string name="create_account">Create account</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="logout">Logout</string>
     <string-array name="sort">
         <item>ascending price</item>
         <item>decreasing price</item>

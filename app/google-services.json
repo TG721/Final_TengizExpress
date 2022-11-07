@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "204629879150",
+    "project_id": "tengizexpress",
+    "storage_bucket": "tengizexpress.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204629879150:android:a1a16b39596259b8c2797f",
+        "android_client_info": {
+          "package_name": "com.TengizMKCorp.tengizexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204629879150-4c3ceilc72oaqs26vqvrmqp9ma4m2sfc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOGO8w_kuSH_qnSET7DPXXP95MQvqtq90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204629879150-4c3ceilc72oaqs26vqvrmqp9ma4m2sfc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
