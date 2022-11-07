@@ -27,7 +27,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>(FragmentAccountBind
 
     override fun listeners() {
         binding.buttonLogOut.setOnClickListener {
-            Firebase.signOut()
+            viewModel.signOut()
             goToLogIn()
         }
     }

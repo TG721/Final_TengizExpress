@@ -62,7 +62,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     when (it) {
                         is ResponseState.Success<*> -> {
                             binding.progressBar.visibility = View.GONE
-                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToAccountFragment())
+                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
                         }
                         is ResponseState.Error -> {
                             binding.progressBar.visibility = View.GONE
