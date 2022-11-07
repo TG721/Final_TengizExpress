@@ -18,7 +18,7 @@ class ResultByCategoryViewModel @Inject constructor(private val getProductsByCat
         MutableStateFlow<ResponseState<ProductsByCategoryID>>(ResponseState.Empty()) //mutable state flow
     val myState: StateFlow<ResponseState<ProductsByCategoryID>> = _myState //immutable state flow
 
-    fun getInfo(categoryID: Int) {
+    fun getInfo(categoryID: Long) {
         viewModelScope.launch {
             _myState.emit(ResponseState.Loading())
             val data = getProductsByCategoriesUseCase.getProductsByCategories(categoryID)

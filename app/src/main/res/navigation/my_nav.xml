@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_result_by_category" >
         <argument
             android:name="category_id"
-            app:argType="integer" />
+            app:argType="long" />
         <argument
             android:name="category_name"
             app:argType="string" />

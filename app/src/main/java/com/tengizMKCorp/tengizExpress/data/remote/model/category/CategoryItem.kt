@@ -6,7 +6,7 @@ data class CategoryItem(
     val alie_category_id: Int,
     val alie_category_name: String,
     val alie_parent_id: Int,
-    val api_category_id: Int,
+    val api_category_id: Long,
     val api_parent_id: Int,
     val category_name: String,
     val modificationDate: String,

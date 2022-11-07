@@ -4,7 +4,7 @@ import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
 
 
 class CategoryUIItem(
-    val id: Int,
+    val id: Long,
     val name: String
 )
 

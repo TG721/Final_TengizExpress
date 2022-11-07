@@ -6,7 +6,6 @@ import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_category.Prod
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_name.ProductByName
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -16,7 +15,7 @@ interface StoreApi {
     @GET("v2/categories")
     suspend fun getCategories(): Response<List<CategoryItem>>
     @GET("category/{categoryID}/products")
-    suspend fun getProductsByCategories(@Path("categoryID") id: Int):Response<ProductsByCategoryID>
+    suspend fun getProductsByCategories(@Path("categoryID") id: Long):Response<ProductsByCategoryID>
     @GET("products/search")
     suspend fun getProductsByName(@Query("name") name:String) : Response<ProductByName>
 

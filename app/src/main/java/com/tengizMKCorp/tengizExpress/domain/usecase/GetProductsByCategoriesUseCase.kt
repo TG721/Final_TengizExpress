@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetProductsByCategoriesUseCase @Inject constructor(
     private val storeRep: StoreRepository,
 ) {
-    suspend fun getProductsByCategories(categoryID: Int): Flow<ResponseState<ProductsByCategoryID>> {
+    suspend fun getProductsByCategories(categoryID: Long): Flow<ResponseState<ProductsByCategoryID>> {
         return storeRep.getProductsByCategories(categoryID)
     }
 }
