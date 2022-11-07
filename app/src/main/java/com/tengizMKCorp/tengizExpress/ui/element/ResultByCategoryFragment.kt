@@ -118,10 +118,7 @@ class ResultByCategoryFragment :
             viewModel.increaseClickCount()
             setupGridView()
         }
-        binding.floatingActionButton.setOnClickListener {
-            val action = ResultByCategoryFragmentDirections.actionResultByCategoryFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
-        }
+
     }
 
     private fun setupRecyclerView() {

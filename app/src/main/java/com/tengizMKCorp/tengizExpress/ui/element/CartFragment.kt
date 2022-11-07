@@ -48,10 +48,6 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
 
     override fun listeners() {
         handleSwipe()
-        binding.floatingActionButton.setOnClickListener {
-            val action = CartFragmentDirections.actionCartFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
-        }
     }
 
     private fun handleSwipe() {

@@ -80,8 +80,8 @@ class NonDetailedProductInfoAdapter(
             val source = getItem(absoluteAdapterPosition)
             binding.apply {
                 productName.text = source.productName
-                productPriceOriginal.text = source.originalPrice.toString()
-                productPriceDiscounted.text = source.discountedPrice.toString()
+                productPriceOriginal.text = source.originalPrice.toString() + "$"
+                productPriceDiscounted.text = source.discountedPrice.toString() + "$"
                 percentSaleText.text = "-" + source.discountPercentage.toString() + "%"
                 Glide.with(ProductImage)
                     .load(source.productPicture)

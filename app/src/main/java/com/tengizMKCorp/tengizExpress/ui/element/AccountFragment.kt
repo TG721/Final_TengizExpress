@@ -30,10 +30,6 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>(FragmentAccountBind
             Firebase.signOut()
             goToLogIn()
         }
-        binding.floatingActionButton.setOnClickListener {
-            val action = AccountFragmentDirections.actionAccountFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
-        }
     }
     private fun goToLogIn(){
         val action = AccountFragmentDirections.actionAccountFragmentToLoginFragment()

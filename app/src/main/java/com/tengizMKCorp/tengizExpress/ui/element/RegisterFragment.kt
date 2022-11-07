@@ -99,10 +99,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         binding.tvSignIn.setOnClickListener {
             goToLogInFra()
         }
-        binding.floatingActionButton.setOnClickListener {
-            val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
-        }
     }
 
     private fun goToLogInFra() {
