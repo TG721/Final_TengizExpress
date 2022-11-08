@@ -23,9 +23,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val navController = binding.fragmentContainerView.getFragment<NavHostFragment>().navController
         setContentView(binding.root)
-
-
-
+        binding.floatingHomeButton.alpha = 0.9f
+        binding.floatingHomeButton.setOnClickListener {
+            navController.navigateUp() // to clear previous navigation history
+            navController.navigate(R.id.homeFragment)
+        }
     }
+
 
 }

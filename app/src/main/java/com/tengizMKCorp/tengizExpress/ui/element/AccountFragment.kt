@@ -27,12 +27,8 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>(FragmentAccountBind
 
     override fun listeners() {
         binding.buttonLogOut.setOnClickListener {
-            Firebase.signOut()
+            viewModel.signOut()
             goToLogIn()
-        }
-        binding.floatingActionButton.setOnClickListener {
-            val action = AccountFragmentDirections.actionAccountFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
         }
     }
     private fun goToLogIn(){

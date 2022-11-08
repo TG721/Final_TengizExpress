@@ -49,9 +49,6 @@
         <action
             android:id="@+id/action_resultByCategoryFragment_to_detailedProductFragment"
             app:destination="@id/detailedProductFragment" />
-        <action
-            android:id="@+id/action_resultByCategoryFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -64,9 +61,6 @@
         <action
             android:id="@+id/action_searchFragment_to_detailedProductFragment"
             app:destination="@id/detailedProductFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailedProductFragment"
@@ -81,9 +75,6 @@
             app:destination="@id/searchFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_detailedProductFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
@@ -101,11 +92,7 @@
         android:id="@+id/cartFragment"
         android:name="com.tengizMKCorp.tengizExpress.ui.element.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
-        <action
-            android:id="@+id/action_cartFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.tengizMKCorp.tengizExpress.ui.element.AccountFragment"
@@ -113,10 +100,9 @@
         tools:layout="@layout/fragment_account" >
         <action
             android:id="@+id/action_accountFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_accountFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -126,13 +112,6 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_registerFragment_to_accountFragment"
-            app:destination="@id/accountFragment"
-            app:popUpTo="@id/my_nav" />
-        <action
-            android:id="@+id/action_registerFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -145,9 +124,7 @@
         <action
             android:id="@+id/action_loginFragment_to_accountFragment"
             app:destination="@id/accountFragment"
-            app:popUpTo="@id/my_nav" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:popUpTo="@id/accountFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

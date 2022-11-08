@@ -9,6 +9,9 @@ class AccountViewModel : ViewModel() {
     fun getUserInfo(): FirebaseUser? {
         return Firebase.getCurrentUser
     }
+    fun signOut(){
+        Firebase.signOut()
+    }
 
 
 }

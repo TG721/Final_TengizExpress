@@ -62,7 +62,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     when (it) {
                         is ResponseState.Success<*> -> {
                             binding.progressBar.visibility = View.GONE
-                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToAccountFragment())
+                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
                         }
                         is ResponseState.Error -> {
                             binding.progressBar.visibility = View.GONE
@@ -98,10 +98,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     override fun listeners() {
         binding.tvSignIn.setOnClickListener {
             goToLogInFra()
-        }
-        binding.floatingActionButton.setOnClickListener {
-            val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
         }
     }
 

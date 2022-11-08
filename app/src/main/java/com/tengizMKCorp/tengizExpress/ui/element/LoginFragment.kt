@@ -67,9 +67,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
 
         }
-        binding.floatingActionButton.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
-        }
+
     }
 }

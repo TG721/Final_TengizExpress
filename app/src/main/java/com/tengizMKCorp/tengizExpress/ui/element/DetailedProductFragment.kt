@@ -56,10 +56,5 @@ class DetailedProductFragment :
             viewModel.addProductToCart(convertNonDetailedProductInfoToCartModel(args.product))
             Toast.makeText(requireContext(), "Added to cart", Toast.LENGTH_LONG).show()
         }
-        binding.floatingActionButton.setOnClickListener {
-            val action =
-                DetailedProductFragmentDirections.actionDetailedProductFragmentToHomeFragment()
-            binding.rootLayout.findNavController().navigate(action)
-        }
     }
 }
