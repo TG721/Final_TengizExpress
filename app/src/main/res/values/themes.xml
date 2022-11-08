@@ -18,5 +18,7 @@
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/red_orange</item>
+        <item name="colorPrimary">@color/default_orange</item>
+        <item name="colorPrimaryVariant">@color/red_orange</item>
     </style>
 </resources>
