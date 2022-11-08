@@ -1,4 +1,4 @@
-Aliexpress client App
+Aliexpress Client App
 
 This is a Aliexpressstore client app. at lunch it loads best sales items sorted by newest.
 Use is also presented 4 menu, Item: Category, Search, Cart, Account.
@@ -11,6 +11,7 @@ Hone button is presented at the bottom of screen and always using whcih User can
 - Category
 - Cart
 - Swiping
+- Password weakness check
 - Choosing layout view after user selects category of products
 - MVVM
 - Networking with Retrofit
