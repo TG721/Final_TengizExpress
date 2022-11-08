@@ -133,6 +133,11 @@ class ResultByCategoryFragment :
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupDropDownMenu()
+    }
+
     private fun setupDropDownMenu() {
         val sortingMethods: Array<String> = resources.getStringArray(R.array.sort)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, sortingMethods)

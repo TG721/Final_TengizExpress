@@ -22,8 +22,8 @@ class DetailedProductFragment :
     override fun setup() {
         binding.apply {
             productName.text = args.product.productName
-            productPriceOriginal.text = args.product.originalPrice.toString()
-            productPriceDiscounted.text = args.product.discountedPrice.toString()
+            productPriceOriginal.text = args.product.originalPrice.toString() + "$"
+            productPriceDiscounted.text = args.product.discountedPrice.toString() + "$"
             percentSaleText.text = "-" + args.product.discountPercentage.toString() + "%"
             Glide.with(ProductImage)
                 .load(args.product.productPicture)
