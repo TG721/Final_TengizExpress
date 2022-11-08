@@ -2,6 +2,7 @@ Aliexpress client App
 
 This is a Aliexpressstore client app. at lunch it loads best sales items sorted by newest.
 Use is also presented 4 menu, Item: Category, Search, Cart, Account.
+Hone button is presented at the bottom of screen and always using whcih User can access Home Pag with the menu.
 
 
 ## Features
@@ -9,11 +10,14 @@ Use is also presented 4 menu, Item: Category, Search, Cart, Account.
 - Search with Search History
 - Category
 - Cart
+- Swiping
 - Choosing layout view after user selects category of products
+- MVVM
 - Networking with Retrofit
 - Room
 - Firebase Authentification
 - Splash Screen
+
 ## Used Dependencies
     //glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
