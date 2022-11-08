@@ -56,11 +56,11 @@ Hone button is presented at the bottom of screen and always using whcih User can
     //Swipe Decorator
     implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
     
-    ##Scroll Horizontally to see all menu items
+##Scroll Horizontally to see all menu items
     ![1667888712844](https://user-images.githubusercontent.com/85778941/200490948-abb2e316-73ef-4e18-a08e-fa71ce5ea841.jpg)
     
-    ##Screenshots
-    ![1667886086577](https://user-images.githubusercontent.com/85778941/200484643-8c770b2e-6eee-4f66-aec2-991021be8114.jpg)
+##Screenshots
+![1667886086577](https://user-images.githubusercontent.com/85778941/200484643-8c770b2e-6eee-4f66-aec2-991021be8114.jpg)
 ![1667886086588](https://user-images.githubusercontent.com/85778941/200484650-29f5945d-1622-4977-b463-9e503ac8aa8c.jpg)
 ![1667886086542](https://user-images.githubusercontent.com/85778941/200484655-de13bfe5-ec64-43a3-befb-773d88586dba.jpg)
 ![1667886086554](https://user-images.githubusercontent.com/85778941/200484656-28d923e9-0fba-4c38-b605-5a8a0058ce65.jpg)
