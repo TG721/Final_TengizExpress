@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/white"
     android:id="@+id/rootLayout"
     tools:context=".ui.element.RegisterFragment">
 
@@ -16,7 +16,6 @@
         android:layout_margin="10dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_arrow_back"
-        android:tint="@color/white"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:text="@string/create_account"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="50sp"
         app:layout_constraintTop_toBottomOf="@+id/ibtnBack"
         tools:layout_editor_absoluteX="40dp" />
