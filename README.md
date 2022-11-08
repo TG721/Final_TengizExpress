@@ -2,7 +2,7 @@ Aliexpress Client App
 
 This is a Aliexpressstore client app. at launch it loads best sales items sorted by newest.
 User is also presented 4 menu Items: Category, Search, Cart, Account.
-Hone button is presented at the bottom of screen and always, using whcih user can access Home Page with the menu.
+Home button is presented at the bottom of screen and always, using which user can access Home Page with the menu.
 
 
 ## Features
