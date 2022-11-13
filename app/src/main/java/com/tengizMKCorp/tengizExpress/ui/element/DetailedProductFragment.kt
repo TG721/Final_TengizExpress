@@ -1,9 +1,11 @@
 package com.tengizMKCorp.tengizExpress.ui.element
 
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.data.local.source.product.NonDetailedProductDataBaseModel
@@ -71,6 +73,10 @@ class DetailedProductFragment :
     }
 
     override fun listeners() {
+        feedbackAdapter.addLoadStateListener {
+            binding.progressBar.isVisible = it.source.refresh is LoadState.NotLoading
+            binding.progressBar.isVisible = it.source.refresh is LoadState.Loading
+        }
         binding.buttonAddToChart.setOnClickListener {
             viewModel.addProductToCart(convertNonDetailedProductInfoToCartModel(args.product))
             Toast.makeText(requireContext(), "Added to cart", Toast.LENGTH_LONG).show()
