@@ -15,6 +15,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -22,6 +23,7 @@ import javax.inject.Singleton
 object AppModule {
 
     private val client = OkHttpClient.Builder().apply {
+        readTimeout(20, TimeUnit.SECONDS)
         addInterceptor(MyInterceptor())
     }.build()
 
