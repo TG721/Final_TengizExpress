@@ -20,6 +20,6 @@ interface StoreApi {
     @GET("products/search")
     suspend fun getProductsByName(@Query("name") name:String) : Response<ProductByName>
     @GET("product/{productID}/feedbacks")
-    suspend fun getProductFeedbacksByID(@Path("productID") id: Long):Response<feedback>
+    suspend fun getProductFeedbacksByID(@Path("productID") id: Long, @Query("page") page: Int):Response<feedback>
 
 }

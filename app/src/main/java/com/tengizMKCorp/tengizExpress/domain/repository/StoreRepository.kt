@@ -17,8 +17,6 @@ interface StoreRepository {
     suspend fun getCategories(): Flow<ResponseState<List<CategoryItem>>>
     suspend fun getProductsByCategories(categoryID: Long): Flow<ResponseState<ProductsByCategoryID>>
     suspend fun getProductsByName(name: String): Flow<ResponseState<ProductByName>>
-    suspend fun getProductFeedbacksByID(productID: Long) : Flow<ResponseState<feedback>>
-
 
     //room
     suspend fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel)

@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tengizMKCorp.tengizExpress.R
+import com.tengizMKCorp.tengizExpress.data.remote.model.feedback.FeedbackDoc
 import com.tengizMKCorp.tengizExpress.databinding.FeedbackItemBinding
-import com.tengizMKCorp.tengizExpress.ui.element.model.FeedbackUI
 
 class FeedbackAdapter() :
-    ListAdapter<FeedbackUI, FeedbackAdapter.FeedbackItemViewHolder>(ItemDiffCallback()) {
+    PagingDataAdapter<FeedbackDoc, FeedbackAdapter.FeedbackItemViewHolder>(ItemDiffCallback()) {
 
     inner class FeedbackItemViewHolder(private val binding: FeedbackItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -22,7 +22,7 @@ class FeedbackAdapter() :
 
             val source = getItem(absoluteAdapterPosition)
             binding.apply {
-                userName.text = source.name
+                userName.text = source!!.name
                 date.text = source.date.subSequence(0, 7)
                 feedbackContent.text = source.content
                 when (source.rating) {
@@ -74,17 +74,17 @@ class FeedbackAdapter() :
     }
 
 
-    private class ItemDiffCallback : DiffUtil.ItemCallback<FeedbackUI>() {
+    private class ItemDiffCallback : DiffUtil.ItemCallback<FeedbackDoc>() {
         override fun areItemsTheSame(
-            oldItem: FeedbackUI,
-            newItem: FeedbackUI,
+            oldItem: FeedbackDoc,
+            newItem: FeedbackDoc,
         ): Boolean =
             oldItem.name == newItem.name
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(
-            oldItem: FeedbackUI,
-            newItem: FeedbackUI,
+            oldItem: FeedbackDoc,
+            newItem: FeedbackDoc,
         ): Boolean =
             oldItem == newItem
 

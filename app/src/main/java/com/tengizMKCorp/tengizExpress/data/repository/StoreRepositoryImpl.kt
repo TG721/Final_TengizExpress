@@ -72,20 +72,6 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
             }
         }
 
-    override suspend fun getProductFeedbacksByID(productID: Long): Flow<ResponseState<feedback>> = flow{
-        try {
-            val response: Response<feedback> = api.getProductFeedbacksByID(productID)
-            val body: feedback? = response.body()
-            if (response.isSuccessful && body != null) {
-                emit(ResponseState.Success(body))
-            } else {
-                emit(ResponseState.Error(response.errorBody()?.string()))
-            }
-        } catch (e: Exception){
-            emit(ResponseState.Error(e.message.toString()))
-        }
-    }
-
 
     //room
     override suspend fun deleteProductFromLastViewedTable(product: NonDetailedProductDataBaseModel) {
