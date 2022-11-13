@@ -15,6 +15,7 @@ Hone button is presented at the bottom of screen and always using whcih User can
 - Choosing layout view after user selects category of products
 - MVVM
 - Networking with Retrofit
+- Paging 3
 - Room
 - Firebase Authentification
 - Splash Screen
@@ -55,6 +56,8 @@ Hone button is presented at the bottom of screen and always using whcih User can
     androidTestImplementation "androidx.room:room-testing:$roomVer"
     //Swipe Decorator
     implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
+    //paging 3
+    implementation("androidx.paging:paging-runtime:3.1.1")
     
 ## Scroll Horizontally to see all menu items
 ![1667888712844](https://user-images.githubusercontent.com/85778941/200491349-a2e6aa76-32ad-45ce-bcb7-9010b3c4fac8.jpg)
