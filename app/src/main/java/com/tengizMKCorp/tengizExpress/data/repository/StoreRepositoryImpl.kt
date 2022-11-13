@@ -4,6 +4,7 @@ import com.tengizMKCorp.tengizExpress.data.local.source.product.*
 import com.tengizMKCorp.tengizExpress.data.remote.StoreApi
 import com.tengizMKCorp.tengizExpress.data.remote.model.best_sales_sorted_by_newest.BestSalesSortedByNewestItem
 import com.tengizMKCorp.tengizExpress.data.remote.model.category.CategoryItem
+import com.tengizMKCorp.tengizExpress.data.remote.model.feedback.feedback
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_category.ProductsByCategoryID
 import com.tengizMKCorp.tengizExpress.data.remote.model.product_by_name.ProductByName
 import com.tengizMKCorp.tengizExpress.domain.repository.StoreRepository
@@ -70,6 +71,20 @@ class StoreRepositoryImpl @Inject constructor(private val api: StoreApi, private
                 emit(ResponseState.Error(e.message.toString()))
             }
         }
+
+    override suspend fun getProductFeedbacksByID(productID: Long): Flow<ResponseState<feedback>> = flow{
+        try {
+            val response: Response<feedback> = api.getProductFeedbacksByID(productID)
+            val body: feedback? = response.body()
+            if (response.isSuccessful && body != null) {
+                emit(ResponseState.Success(body))
+            } else {
+                emit(ResponseState.Error(response.errorBody()?.string()))
+            }
+        } catch (e: Exception){
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
 
 
     //room

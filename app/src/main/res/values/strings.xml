@@ -24,6 +24,7 @@
     <string name="repeat_password">Repeat password</string>
     <string name="sign_up">Sign up</string>
     <string name="logout">Logout</string>
+    <string name="no_feedback">no feedback was found</string>
     <string-array name="sort">
         <item>ascending price</item>
         <item>decreasing price</item>

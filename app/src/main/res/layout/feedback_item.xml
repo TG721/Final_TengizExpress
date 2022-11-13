@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginVertical="10dp"
+    android:orientation="vertical">
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/userName"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="start"
+        android:text="T****z" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="2022-10" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/star1"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/star_white" />
+        <ImageView
+            android:id="@+id/star2"
+            android:layout_marginEnd="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/star_white" />
+        <ImageView
+            android:id="@+id/star3"
+            android:layout_marginEnd="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/star_white" />
+        <ImageView
+            android:id="@+id/star4"
+            android:layout_marginEnd="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/star_white" />
+        <ImageView
+            android:id="@+id/star5"
+            android:layout_marginEnd="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/star_white" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/feedbackContent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="start"
+        android:text="First time bought shoes on AliExpress. Shipping is super fast. The review did not immediately write, decided to look like it. Excellent sneakers. The length of the slings, the size approached perfectly. Very comfortable, do not get wet. As long as the quality is good. Let's see how it will be in the sock" />
+</androidx.appcompat.widget.LinearLayoutCompat>
