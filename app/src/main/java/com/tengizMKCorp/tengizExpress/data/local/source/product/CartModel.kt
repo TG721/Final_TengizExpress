@@ -9,7 +9,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "cart_table")
 data class CartModel (
-    @PrimaryKey val  id: String,
+    @PrimaryKey(autoGenerate = true)  val cartPosID: Int?,
+    val  id: String,
     @ColumnInfo(name = "discounted_price") val discountedPrice: Double,
     @ColumnInfo(name = "product_name") val productName: String,
     @ColumnInfo(name = "product_picture") val productPicture: String

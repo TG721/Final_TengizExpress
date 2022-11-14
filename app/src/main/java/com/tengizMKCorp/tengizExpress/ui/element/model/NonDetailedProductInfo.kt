@@ -33,5 +33,5 @@ fun convertProductByName(obj: ProductNameDoc): NonDetailedProductInfo{
 }
 
 fun convertNonDetailedProductInfoToCartModel(obj: NonDetailedProductInfo): CartModel {
-    return CartModel(obj.id, obj.discountedPrice,obj.productName, obj.productPicture)
+    return CartModel(null,obj.id, obj.discountedPrice,obj.productName, obj.productPicture)
 }
