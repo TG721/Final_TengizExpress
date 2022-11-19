@@ -27,6 +27,7 @@ class CartItemAdapter() :
                     .load(source.productPicture)
                     .into(ProductImage)
                 productID.text = source.id
+                cartPosID.text = source.cartPosID.toString()
                 productURI.text = source.productPicture
                 cardView.setOnClickListener {
                     val pos = absoluteAdapterPosition
@@ -52,7 +53,7 @@ class CartItemAdapter() :
             oldItem: CartModel,
             newItem: CartModel,
         ): Boolean =
-            oldItem.id == newItem.id
+            oldItem.cartPosID == newItem.cartPosID
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(

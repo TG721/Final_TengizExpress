@@ -56,6 +56,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
         lateinit var productPicture: String
         lateinit var productID: String
         lateinit var currentCartProduct: CartModel
+        lateinit var cartPosID: String
         val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 productName =
@@ -70,8 +71,11 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
                 productPicture =
                     ((viewHolder.itemView as androidx.constraintlayout.widget.ConstraintLayout).getChildAt(
                         5) as TextView).text.toString()
+                cartPosID = ((viewHolder.itemView as androidx.constraintlayout.widget.ConstraintLayout).getChildAt(
+                    6) as TextView).text.toString()
+
                 currentCartProduct =
-                    CartModel(productID, discountedPrice.toDouble(), productName, productPicture)
+                    CartModel(cartPosID.toInt(),productID, discountedPrice.toDouble(), productName, productPicture)
                 viewModel.deleteProductFromCart(currentCartProduct)
                 Snackbar.make(binding.root, "item was removed", Snackbar.LENGTH_SHORT).apply {
                     setAction("Undo") {

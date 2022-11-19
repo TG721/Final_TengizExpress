@@ -16,7 +16,7 @@ interface CartDao {
     @Delete
     suspend fun deleteProductFromCart(product: CartModel)
 
-    @Query("SELECT * FROM cart_table")
+    @Query("SELECT * FROM cart_table ORDER BY cartPosID DESC")
     fun readAllDataFromCartTable(): Flow<List<CartModel>>
 
 }

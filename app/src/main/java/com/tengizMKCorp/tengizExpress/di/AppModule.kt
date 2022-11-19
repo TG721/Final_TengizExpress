@@ -23,7 +23,7 @@ import javax.inject.Singleton
 object AppModule {
 
     private val client = OkHttpClient.Builder().apply {
-        readTimeout(20,TimeUnit.SECONDS)
+        readTimeout(20, TimeUnit.SECONDS)
         addInterceptor(MyInterceptor())
     }.build()
 
