@@ -33,16 +33,7 @@ class HomeItemAdapter() :
 
                     1 -> {
                         val action =
-                            HomeFragmentDirections.actionHomeFragmentToSearchFragment() //current item
-                        binding.rootLayout.findNavController().navigate(action)
-                    }
-                    3 -> {
-                        val action =
-                            HomeFragmentDirections.actionHomeFragmentToAccountFragment() //current item
-                        binding.rootLayout.findNavController().navigate(action)
-                    }
-                    2 -> {
-                       val action = HomeFragmentDirections.actionHomeFragmentToCartFragment() //current item
+                            HomeFragmentDirections.actionHomeFragmentToGiftsFragment() //current item
                         binding.rootLayout.findNavController().navigate(action)
                     }
                 }

@@ -25,6 +25,7 @@
     <string name="sign_up">Sign up</string>
     <string name="logout">Logout</string>
     <string name="rating_and_reviews">Rating and reviews:</string>
+    <string name="you_are_not_logged_in">You are not logged In</string>
     <string-array name="sort">
         <item>ascending price</item>
         <item>decreasing price</item>

@@ -16,7 +16,7 @@ class NonDetailedProductInfo (
     val discountPercentage: Int,
     val productName: String,
     val productPicture: String
-    ) : Parcelable
+) : Parcelable
 
 fun convertBestSalesSortedByNestToNonDetailedProductInfo(obj: BestSalesSortedByNewestItem): NonDetailedProductInfo{
     return NonDetailedProductInfo(obj.product_id.toString(),obj.original_price,obj.sale_price, obj.discount_rate,obj.product_title, obj.product_main_image_url)

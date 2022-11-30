@@ -21,6 +21,25 @@ object Firebase {
     fun signUp(email: String, password: String) =
         firebaseAuth.createUserWithEmailAndPassword(email, password)
 
+    fun getUserImage(file: File): FileDownloadTask {
+        val storageReference =
+            FirebaseStorage.getInstance().getReference("Users/${firebaseAuth.currentUser?.uid}")
+        return storageReference.getFile(file)
+    }
+    fun uploadProfilePic(imageUri: Uri?) =
+        FirebaseStorage.getInstance().getReference("Users/${firebaseAuth.currentUser?.uid}")
+            .putFile(imageUri!!)
+
+    fun updateUserPicture (imageUri: Uri?) {
+        val uid = getCurrentUser?.uid
+        val storageReference = FirebaseStorage.getInstance().getReference("Users/$uid")
+        if(imageUri!=null) storageReference.putFile(imageUri)
+    }
+    fun updateUserInfo(imageUri: Uri?) {
+        val uid = firebaseAuth.currentUser?.uid
+        val storageReference = FirebaseStorage.getInstance().getReference("Users/$uid")
+        if(imageUri!=null) storageReference.putFile(imageUri)
+    }
 
     fun resetPassword(email: String) = firebaseAuth.sendPasswordResetEmail(email)
 
