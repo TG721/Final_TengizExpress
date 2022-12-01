@@ -61,6 +61,9 @@ Home button is presented at the bottom of screen and always, using which user ca
     
 ## Scroll Horizontally to see all menu items
 ![1667888712844](https://user-images.githubusercontent.com/85778941/200491349-a2e6aa76-32ad-45ce-bcb7-9010b3c4fac8.jpg)
+## Swipe cart item to the left to remove it from cart
+![Screenshot_2022-12-01-18-42-29-110_com TengizMKCorp tengizexpress](https://user-images.githubusercontent.com/85778941/205085558-8a7b42fc-5c71-4d51-8131-dbeee9676669.jpg)
+
 
 
 ## Screenshots
