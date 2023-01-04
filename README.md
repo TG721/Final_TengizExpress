@@ -1,4 +1,4 @@
-Aliexpress Client App
+# Aliexpress Client App
 
 This is a Aliexpress store client app. at launch it loads best sales items sorted by newest.
 User is also presented 4 menu Items: Category, Search, Cart, Account.
